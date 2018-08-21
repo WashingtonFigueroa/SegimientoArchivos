@@ -42,15 +42,15 @@
                     <i class="fa fa-user"></i> Departamento de Gerencia <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu>
-                    <a class="dropdown-item" href="javascript:void(0)">
+                    <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/cargo']" [routerLinkActive]="['router-link-active']" >
                         <i class="fa fa-fw fa-user"></i>
                         {{ 'Cargo' | translate }}
                     </a>
-                    <a class="dropdown-item" href="javascript:void(0)">
+                    <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/departamento']" [routerLinkActive]="['router-link-active']" >
                         <i class="fa fa-building"></i>
                         {{ 'Departamento' | translate }}
                     </a>
-                    <a class="dropdown-item" href="javascript:void(0)">
+                    <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/privilegio']" [routerLinkActive]="['router-link-active']" >
                         <i class="fa fa-fw fa-gear"></i>
                         {{ 'Privilegios' | translate }}
                     </a>
