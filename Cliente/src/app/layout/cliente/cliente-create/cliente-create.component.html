@@ -25,7 +25,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="iden">Identificación:</span>
               </div>
-              <input type="text" class="form-control" id="identificacion" name="identificacion" formControlName="identificacion" placeholder="000000000-0" autofocus/>
+              <input type="text" class="form-control"
+                     mask="000000000-0"
+                     id="identificacion" name="identificacion" formControlName="identificacion" placeholder="000000000-0" autofocus/>
               &nbsp;&nbsp;&nbsp;
               <button (click)="consultacliente()" class="btn btn-success">
                 <span class="fa fa-search"></span>
@@ -41,7 +43,10 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="lelefono">Telefono:</span>
               </div>
-              <input type="text" class="form-control" id="telefono" name="telefono" formControlName="telefono" />
+              <input type="text"
+                     placeholder="000-000-000"
+                     mask="000-000-000"
+                     class="form-control" id="telefono" name="telefono" formControlName="telefono" />
               <small class="alert-danger" *ngIf="clienteGroup.get('telefono').status ==='INVALID' && clienteGroup.get('telefono').dirty">Telefono invalido</small>
             </div>
             <div class="form-group input-group">

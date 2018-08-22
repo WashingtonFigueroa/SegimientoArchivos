@@ -45,7 +45,7 @@ import { JsonpModule } from '@angular/http';
 import { RecorridoComponent } from './recorrido/recorrido.component';
 import { RecorridoIndexComponent } from './recorrido/recorrido-index/recorrido-index.component';
 import {RecorridoService} from './recorrido/recorrido.service';
-import {NgxMaskModule} from 'ngx-mask';
+import {MaskService, NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
     imports: [
@@ -57,7 +57,7 @@ import {NgxMaskModule} from 'ngx-mask';
         JsonpModule,
         NgbModalModule,
         NgbDropdownModule.forRoot(),
-        NgxMaskModule
+        NgxMaskModule.forRoot()
     ],
     declarations: [
         LayoutComponent,
