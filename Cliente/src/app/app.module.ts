@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -20,7 +20,6 @@ export const createTranslateLoader = (http: HttpClient) => {
     imports: [
         CommonModule,
         BrowserModule,
-        BrowserAnimationsModule,
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {
@@ -32,7 +31,9 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        NgbModule.forRoot()],
+        NgbModule.forRoot(),
+        BrowserAnimationsModule,
+    ],
     declarations: [AppComponent],
     providers: [AuthGuard],
     bootstrap: [AppComponent]

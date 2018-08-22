@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {ClienteService} from '../cliente.service';
-import {NgModel} from '@angular/forms';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment.prod';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {routerTransition} from "../../../router.animations";
 
 @Component({
   selector: 'app-cliente-index',
   templateUrl: './cliente-index.component.html',
-  styleUrls: ['./cliente-index.component.scss']
+  styleUrls: ['./cliente-index.component.scss'],
+  animations: [routerTransition()]
 })
 
 export class ClienteIndexComponent implements OnInit {
