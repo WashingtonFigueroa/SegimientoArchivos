@@ -32,4 +32,6 @@ Route::resource('tramites', 'TramiteController', ['except' => ['edit', 'create']
 
 Route::resource('respaldos', 'RespaldoController', ['except' => ['edit', 'create']]);
 
+Route::resource('usuarios', 'UsuarioController', ['except' => ['edit', 'create']]);
+
 
