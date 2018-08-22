@@ -9,15 +9,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-// AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
-    /* for development
-    return new TranslateHttpLoader(
-        http,
-        '/start-angular/SB-Admin-BS4-Angular-6/master/dist/assets/i18n/',
-        '.json'
-    ); */
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 };
 
@@ -34,8 +29,10 @@ export const createTranslateLoader = (http: HttpClient) => {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule
-    ],
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule.forRoot()],
     declarations: [AppComponent],
     providers: [AuthGuard],
     bootstrap: [AppComponent]
