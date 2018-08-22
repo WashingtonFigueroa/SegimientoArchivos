@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
+      <br>
       <div class="card-header">
         <i class="fa fa-user"></i> &nbsp;
         Añadir Cliente
@@ -30,7 +31,6 @@
                 <span class="fa fa-search"></span>
               </button>
             </div>
-
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="nom">Nombres:</span>
@@ -41,19 +41,22 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="lelefono">Telefono:</span>
               </div>
-              <input type="text" class="form-control" placeholder="000-000-000">
+              <input type="text" class="form-control" id="telefono" name="telefono" formControlName="telefono" />
+              <small class="alert-danger" *ngIf="clienteGroup.get('telefono').status ==='INVALID' && clienteGroup.get('telefono').dirty">Telefono invalido</small>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="celular">Celular:</span>
+                <span class="input-group-text" id="cel">Celular:</span>
               </div>
-              <input type="text" class="form-control" placeholder="000-000-0000">
+              <input type="text" class="form-control" id="celular" name="celular" formControlName="celular" />
+              <small class="alert-danger" *ngIf="clienteGroup.get('celular').status ==='INVALID' && clienteGroup.get('celular').dirty">Celular invalido</small>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="correo">Correo:</span>
+                <span class="input-group-text" id="email">Correo:</span>
               </div>
-              <input type="text" class="form-control" placeholder="@">
+              <input type="email" class="form-control" id="correo" name="correo" formControlName="correo" />
+              <small class="alert-danger" *ngIf="clienteGroup.get('correo').status ==='INVALID' && clienteGroup.get('correo').dirty">Correo invalido</small>
             </div>
             <hr>
             <div class="row">
@@ -73,8 +76,9 @@
 
           </form>
         </div>
-        <div class="col-md-4">
-          Imagen
+        <div class="col-md-4" align="center">
+          <h3>Clientes</h3>
+          <img src="http://www.sistemasenlaweb.com/images/picIconoClientes.png" alt="" width="200">
         </div>
       </div>
     </div>

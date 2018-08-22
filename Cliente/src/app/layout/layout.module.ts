@@ -44,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http';
 import { RecorridoComponent } from './recorrido/recorrido.component';
 import { RecorridoIndexComponent } from './recorrido/recorrido-index/recorrido-index.component';
-import {RecorridoService} from "./recorrido/recorrido.service";
+import {RecorridoService} from './recorrido/recorrido.service';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
     imports: [
@@ -55,7 +56,8 @@ import {RecorridoService} from "./recorrido/recorrido.service";
         ReactiveFormsModule,
         JsonpModule,
         NgbModalModule,
-        NgbDropdownModule.forRoot()
+        NgbDropdownModule.forRoot(),
+        NgxMaskModule
     ],
     declarations: [
         LayoutComponent,
