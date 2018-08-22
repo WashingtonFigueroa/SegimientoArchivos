@@ -8,13 +8,13 @@
       <hr>
       <div class="row">
         <div class="col-md-8">
-          <form role="form">
+          <form role="form" [formGroup]="clienteGroup">
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="tipo">Tipo documento</span>
               </div>
-              <select class="form-control">
+              <select class="form-control" id="tipo_documento" formControlName="tipo_documento" name="tipo_documento">
                 <option>Ruc</option>
                 <option>Cédula</option>
               </select>
@@ -22,16 +22,20 @@
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="identificacion">Identificación:</span>
+                <span class="input-group-text" id="iden">Identificación:</span>
               </div>
-              <input type="text" class="form-control" placeholder="000000000-0">
+              <input type="text" class="form-control" id="identificacion" name="identificacion" formControlName="identificacion" placeholder="000000000-0" autofocus/>
+              &nbsp;&nbsp;&nbsp;
+              <button (click)="consultacliente()" class="btn btn-success">
+                <span class="fa fa-search"></span>
+              </button>
             </div>
 
             <div class="form-group input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="nombres">Nombres:</span>
+                <span class="input-group-text" id="nom">Nombres:</span>
               </div>
-              <input type="text" class="form-control" placeholder="...">
+              <input type="text" class="form-control" id="nombres" name="nombres" formControlName="nombres" />
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -54,7 +58,7 @@
             <hr>
             <div class="row">
               <div class="col-md-3">
-                <button class="btn btn-primary" style="width: 150px">
+                <button [disabled]="clienteGroup.status === 'INVALID'" (click)="store()" class="btn btn-primary" style="width: 150px">
                   <span class="fa fa-save"></span>
                   Guardar
                 </button>

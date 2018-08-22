@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
@@ -33,19 +33,28 @@ import { ClienteCreateComponent } from './cliente/cliente-create/cliente-create.
 import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
 import { RespaldoComponent } from './respaldo/respaldo.component';
 import { RespaldoIndexComponent } from './respaldo/respaldo-index/respaldo-index.component';
-import {CargoService} from "./cargo/cargo.service";
-import {DepartamentoService} from "./departamento/departamento.service";
-import {PrivilegioService} from "./privilegio/privilegio.service";
-import {TipotramiteService} from "./tipotramite/tipotramite.service";
-import {TramiteService} from "./tramite/tramite.service";
-import {ClienteService} from "./cliente/cliente.service";
-import {RespaldoService} from "./respaldo/respaldo.service";
+import { CargoService } from './cargo/cargo.service';
+import { DepartamentoService } from './departamento/departamento.service';
+import { PrivilegioService } from './privilegio/privilegio.service';
+import { TipotramiteService } from './tipotramite/tipotramite.service';
+import { TramiteService } from './tramite/tramite.service';
+import { ClienteService } from './cliente/cliente.service';
+import { RespaldoService } from './respaldo/respaldo.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JsonpModule } from '@angular/http';
+import { RecorridoComponent } from './recorrido/recorrido.component';
+import { RecorridoIndexComponent } from './recorrido/recorrido-index/recorrido-index.component';
+import {RecorridoService} from "./recorrido/recorrido.service";
 
 @NgModule({
     imports: [
         CommonModule,
         LayoutRoutingModule,
         TranslateModule,
+        FormsModule,
+        ReactiveFormsModule,
+        JsonpModule,
+        NgbModalModule,
         NgbDropdownModule.forRoot()
     ],
     declarations: [
@@ -77,7 +86,9 @@ import {RespaldoService} from "./respaldo/respaldo.service";
         ClienteCreateComponent,
         ClienteEditComponent,
         RespaldoComponent,
-        RespaldoIndexComponent],
+        RespaldoIndexComponent,
+        RecorridoComponent,
+        RecorridoIndexComponent],
     providers: [
         CargoService,
         DepartamentoService,
@@ -86,7 +97,8 @@ import {RespaldoService} from "./respaldo/respaldo.service";
         TramiteService,
         TramiteService,
         ClienteService,
-        RespaldoService
+        RespaldoService,
+        RecorridoService
     ]
 })
 export class LayoutModule {}
