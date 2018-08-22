@@ -3,7 +3,7 @@ import {ClienteService} from '../cliente.service';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment.prod';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {routerTransition} from "../../../router.animations";
+import {routerTransition} from '../../../router.animations';
 
 @Component({
   selector: 'app-cliente-index',
@@ -40,8 +40,10 @@ export class ClienteIndexComponent implements OnInit {
     }
 
     buscar(search) {
-        this.clientes = this.clientesBK.filter((material: any) => {
-            return material.nombre.toLowerCase().indexOf(search) > -1;
+        this.clientes = this.clientesBK.filter((cliente: any) => {
+            return cliente.tipo_documento.toLowerCase().indexOf(search) > -1 ||
+                cliente.identificacion.toLowerCase().indexOf(search) > -1 ||
+                cliente.nombres.toLowerCase().indexOf(search) > -1;
         });
     }
 

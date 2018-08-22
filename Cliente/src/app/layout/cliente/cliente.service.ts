@@ -12,6 +12,9 @@ export class ClienteService {
     index() {
         return this.http.get(this.base + 'clientes');
     }
+    lista_clientes() {
+        return this.http.get(this.base + 'lista_clientes');
+    }
     indexPerPage(url) {
         return this.http.get( url );
     }

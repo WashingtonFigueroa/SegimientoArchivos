@@ -10,6 +10,10 @@ class ClienteController extends Controller
     {
         return response()->json(Cliente::orderBy('nombres')->paginate(10), 200);
     }
+    public function lista_clientes()
+    {
+        return response()->json(Cliente::orderBy('nombres')->get(), 200);
+    }
     public function store()
     {
         return response()->json(Cliente::create(request()->all()), 201);

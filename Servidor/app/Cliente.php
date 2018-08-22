@@ -9,7 +9,7 @@ class Cliente extends Model
 {
     use SoftDeletes;
     protected $table = 'clientes';
-    protected $fillable = ['tipo_documento', 'identificacion', 'nombres'];
+    protected $fillable = ['tipo_documento', 'identificacion', 'nombres', 'telefono', 'celular', 'correo'];
     protected $dates = ['deleted_at'];
 
     public function tramites() {
