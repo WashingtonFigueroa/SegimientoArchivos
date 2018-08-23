@@ -21,6 +21,7 @@ class CreateClientesTable extends Migration
             $table->string('telefono')->nullable();
             $table->string('celular')->nullable();
             $table->string('correo')->nullable();
+            $table->string('documento')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

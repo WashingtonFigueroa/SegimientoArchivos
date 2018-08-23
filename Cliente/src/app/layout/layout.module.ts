@@ -7,10 +7,6 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { CargoComponent } from './cargo/cargo.component';
-import { CargoIndexComponent } from './cargo/cargo-index/cargo-index.component';
-import { CargoEditComponent } from './cargo/cargo-edit/cargo-edit.component';
-import { CargoCreateComponent } from './cargo/cargo-create/cargo-create.component';
 import { DepartamentoComponent } from './departamento/departamento.component';
 import { DepartamentoIndexComponent } from './departamento/departamento-index/departamento-index.component';
 import { DepartamentoCreateComponent } from './departamento/departamento-create/departamento-create.component';
@@ -33,7 +29,6 @@ import { ClienteCreateComponent } from './cliente/cliente-create/cliente-create.
 import { ClienteEditComponent } from './cliente/cliente-edit/cliente-edit.component';
 import { RespaldoComponent } from './respaldo/respaldo.component';
 import { RespaldoIndexComponent } from './respaldo/respaldo-index/respaldo-index.component';
-import { CargoService } from './cargo/cargo.service';
 import { DepartamentoService } from './departamento/departamento.service';
 import { PrivilegioService } from './privilegio/privilegio.service';
 import { TipotramiteService } from './tipotramite/tipotramite.service';
@@ -46,6 +41,11 @@ import { RecorridoComponent } from './recorrido/recorrido.component';
 import { RecorridoIndexComponent } from './recorrido/recorrido-index/recorrido-index.component';
 import {RecorridoService} from './recorrido/recorrido.service';
 import {MaskService, NgxMaskModule} from 'ngx-mask';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { UsuarioIndexComponent } from './usuario/usuario-index/usuario-index.component';
+import { UsuarioCreateComponent } from './usuario/usuario-create/usuario-create.component';
+import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
+import {UsuarioService} from './usuario/usuario.service';
 
 @NgModule({
     imports: [
@@ -63,10 +63,6 @@ import {MaskService, NgxMaskModule} from 'ngx-mask';
         LayoutComponent,
         SidebarComponent,
         HeaderComponent,
-        CargoComponent,
-        CargoIndexComponent,
-        CargoEditComponent,
-        CargoCreateComponent,
         DepartamentoComponent,
         DepartamentoIndexComponent,
         DepartamentoCreateComponent,
@@ -90,9 +86,13 @@ import {MaskService, NgxMaskModule} from 'ngx-mask';
         RespaldoComponent,
         RespaldoIndexComponent,
         RecorridoComponent,
-        RecorridoIndexComponent],
+        RecorridoIndexComponent,
+        UsuarioComponent,
+        UsuarioIndexComponent,
+        UsuarioCreateComponent,
+        UsuarioEditComponent],
     providers: [
-        CargoService,
+        UsuarioService,
         DepartamentoService,
         PrivilegioService,
         TipotramiteService,

@@ -13,10 +13,6 @@ import {TramiteComponent} from './tramite/tramite.component';
 import {TramiteIndexComponent} from './tramite/tramite-index/tramite-index.component';
 import {TramiteCreateComponent} from './tramite/tramite-create/tramite-create.component';
 import {TramiteEditComponent} from './tramite/tramite-edit/tramite-edit.component';
-import {CargoComponent} from './cargo/cargo.component';
-import {CargoIndexComponent} from './cargo/cargo-index/cargo-index.component';
-import {CargoCreateComponent} from './cargo/cargo-create/cargo-create.component';
-import {CargoEditComponent} from './cargo/cargo-edit/cargo-edit.component';
 import {DepartamentoComponent} from './departamento/departamento.component';
 import {DepartamentoIndexComponent} from './departamento/departamento-index/departamento-index.component';
 import {DepartamentoCreateComponent} from './departamento/departamento-create/departamento-create.component';
@@ -27,6 +23,10 @@ import {PrivilegioCreateComponent} from './privilegio/privilegio-create/privileg
 import {PrivilegioEditComponent} from './privilegio/privilegio-edit/privilegio-edit.component';
 import {RecorridoComponent} from './recorrido/recorrido.component';
 import {RecorridoIndexComponent} from './recorrido/recorrido-index/recorrido-index.component';
+import {UsuarioComponent} from './usuario/usuario.component';
+import {UsuarioIndexComponent} from './usuario/usuario-index/usuario-index.component';
+import {UsuarioCreateComponent} from './usuario/usuario-create/usuario-create.component';
+import {UsuarioEditComponent} from './usuario/usuario-edit/usuario-edit.component';
 
 const routes: Routes = [
     {
@@ -56,12 +56,12 @@ const routes: Routes = [
                     { path: 'crear', component: TramiteCreateComponent},
                     { path: 'editar/:id', component: TramiteEditComponent}]
             },
-            {   path: 'cargo',
-                component: CargoComponent,
+            {   path: 'usuario',
+                component: UsuarioComponent,
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
-                    { path: 'listar', component: CargoIndexComponent},
-                    { path: 'crear', component: CargoCreateComponent},
-                    { path: 'editar/:id', component: CargoEditComponent}]
+                    { path: 'listar', component: UsuarioIndexComponent},
+                    { path: 'crear', component: UsuarioCreateComponent},
+                    { path: 'editar/:id', component: UsuarioEditComponent}]
             },
             {   path: 'departamento',
                 component: DepartamentoComponent,

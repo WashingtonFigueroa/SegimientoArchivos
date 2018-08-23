@@ -35,7 +35,8 @@ export class ClienteCreateComponent implements OnInit {
                 'nombres': new FormControl('', [Validators.required]),
                 'telefono': new FormControl('', [Validators.pattern(/^\d{9}$/)]),
                 'celular': new FormControl('', [Validators.pattern(/^\d{10}$/)]),
-                'correo' : new FormControl('', [Validators.pattern(/^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/)])
+                'correo' : new FormControl('', [Validators.pattern(/^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/)]),
+                'documneto': new FormControl('')
             });
     }
 

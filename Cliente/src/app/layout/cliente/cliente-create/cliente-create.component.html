@@ -63,6 +63,12 @@
               <input type="email" class="form-control" id="correo" name="correo" formControlName="correo" />
               <small class="alert-danger" *ngIf="clienteGroup.get('correo').status ==='INVALID' && clienteGroup.get('correo').dirty">Correo invalido</small>
             </div>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="doc">Documento:</span>
+              </div>
+              <input type="file" class="form-control" id="documento" name="documento" formControlName="documento" />
+            </div>
             <hr>
             <div class="row">
               <div class="col-md-3">

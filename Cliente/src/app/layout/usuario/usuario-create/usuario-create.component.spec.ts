@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CargoIndexComponent } from './cargo-index.component';
+import { UsuarioCreateComponent } from './usuario-create.component';
 
-describe('CargoIndexComponent', () => {
-  let component: CargoIndexComponent;
-  let fixture: ComponentFixture<CargoIndexComponent>;
+describe('UsuarioCreateComponent', () => {
+  let component: UsuarioCreateComponent;
+  let fixture: ComponentFixture<UsuarioCreateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CargoIndexComponent ]
+      declarations: [ UsuarioCreateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CargoIndexComponent);
+    fixture = TestBed.createComponent(UsuarioCreateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
