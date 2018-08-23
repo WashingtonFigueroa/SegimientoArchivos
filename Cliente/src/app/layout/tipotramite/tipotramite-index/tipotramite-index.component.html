@@ -1,6 +1,7 @@
 <div [@routerTransition]>
   <!--<app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>-->
   <div class="container-fluid">
+    <br>
     <div class="row">
       <div class="col-md-12">
         <div class="card-header">
@@ -34,7 +35,7 @@
             <tbody>
             <tr *ngFor="let tipo of tipotramites; let i = index">
               <td>{{ tipo.id }}</td>
-              <td>{{ tipo.departamento_id }}</td>
+              <td>{{ tipo.departamento.nombre }}</td>
               <td>{{ tipo.nombre }}</td>
               <td>{{ tipo.descripcion }}</td>
               <td align="center">

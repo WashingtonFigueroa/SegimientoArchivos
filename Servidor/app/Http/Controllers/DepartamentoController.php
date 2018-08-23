@@ -10,6 +10,10 @@ class DepartamentoController extends Controller
     {
         return response()->json(Departamento::orderBy('nombre')->paginate(10), 200);
     }
+    public function lista_departamnetos()
+    {
+        return response()->json(Departamento::orderBy('nombre')->get(), 200);
+    }
     public function store()
     {
         return response()->json(Departamento::create(request()->all()), 201);

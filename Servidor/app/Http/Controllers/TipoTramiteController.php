@@ -8,15 +8,17 @@ class TipoTramiteController extends Controller
 {
     public function index()
     {
-        return response()->json(TipoTramite::orderBy('nombre')->paginate(10), 200);
+        return response()->json(TipoTramite::with('departamento')
+                        ->orderBy('nombre')->paginate(10), 200);
     }
     public function lista_tipo_tramites()
     {
         return response()->json(TipoTramite::orderBy('nombre')->get(), 200);
     }
-    public function store()
+    public function store(Request $request)
     {
-        return response()->json(TipoTramite::create(request()->all()), 201);
+        var_dump($request);
+       // return response()->json(TipoTramite::create(request()->all()), 201);
     }
     public function show($id)
     {

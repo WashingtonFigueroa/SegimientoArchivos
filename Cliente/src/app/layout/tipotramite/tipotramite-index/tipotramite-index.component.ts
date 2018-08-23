@@ -33,10 +33,9 @@ export class TipotramiteIndexComponent implements OnInit {
         });
     }
     buscar(search) {
-        this.tipotramites = this.tipotramitesBK.filter((tipotramite: any) => {
-            return tipotramite.departamento.nombre.toLowerCase().indexOf(search) > -1 ||
-                tipotramite.nombre.toLowerCase().indexOf(search) > -1 ||
-                tipotramite.correo.toLowerCase().indexOf(search) > -1;
+        this.tipotramites = this.tipotramitesBK.filter((tipo: any) => {
+            return tipo.departamento.nombre.toLowerCase().indexOf(search) > -1 ||
+                   tipo.nombre.toLowerCase().indexOf(search) > -1;
         });
     }
     getPages(last_page) {
