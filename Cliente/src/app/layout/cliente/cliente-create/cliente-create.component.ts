@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ClienteService} from '../cliente.service';
 import {Router} from '@angular/router';
@@ -16,6 +16,7 @@ export class ClienteCreateComponent implements OnInit {
     successStatus = false;
     consulta_cedula;
     txt_ruc;
+    @ViewChild('documento') documento;
 
     constructor(protected fb: FormBuilder,
                 protected clienteService: ClienteService,
@@ -28,20 +29,36 @@ export class ClienteCreateComponent implements OnInit {
     }
 
     createForm() {
-        this.clienteGroup = this.fb.group(
-            {
+        this.clienteGroup = this.fb.group({
                 'tipo_documento': new FormControl('', [Validators.required]),
                 'identificacion': new FormControl('', [Validators.required]),
                 'nombres': new FormControl('', [Validators.required]),
                 'telefono': new FormControl('', [Validators.pattern(/^\d{9}$/)]),
                 'celular': new FormControl('', [Validators.pattern(/^\d{10}$/)]),
                 'correo' : new FormControl('', [Validators.pattern(/^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/)]),
-                'documneto': new FormControl('')
+                'documento': new FormControl('')
             });
     }
 
     store() {
-        this.clienteService.store(this.clienteGroup.value)
+        const form =  new FormData();
+        const file = this.documento.nativeElement;
+        if (file.files[0]) {
+            form.append('documento', file.files[0]);
+            form.append('tipo_documento', this.clienteGroup.value.tipo_documento);
+            form.append('identificacion', this.clienteGroup.value.identificacion);
+            form.append('nombres', this.clienteGroup.value.nombres);
+            form.append('telefono', this.clienteGroup.value.telefono);
+            form.append('celular', this.clienteGroup.value.celular);
+            form.append('correo', this.clienteGroup.value.correo);
+        } else {
+            form.append('tipo_documento', this.clienteGroup.value.tipo_documento);
+            form.append('identificacion', this.clienteGroup.value.identificacion);
+            form.append('nombres', this.clienteGroup.value.nombres);
+            form.append('telefono', this.clienteGroup.value.telefono);
+            form.append('celular', this.clienteGroup.value.celular);
+            form.append('correo', this.clienteGroup.value.correo);
+        } this.clienteService.store(form)
             .subscribe((cliente: any) => {
                 this.toastr.success('Cliente Registrado', 'Ok');
                 this.router.navigate(['cliente']);

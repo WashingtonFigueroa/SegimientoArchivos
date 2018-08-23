@@ -1,3 +1,86 @@
-<p>
-  cliente-edit works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <div class="card-header">
+        <i class="fa fa-user"></i> &nbsp;
+        Editar Cliente
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-8">
+          <form (submit)="update()" role="form" [formGroup]="clienteGroup" *ngIf="cliente !== null">
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="tipo">Tipo documento</span>
+              </div>
+              <select class="form-control" id="tipo_documento" formControlName="tipo_documento" name="tipo_documento">
+                <option>Ruc</option>
+                <option>Cédula</option>
+              </select>
+            </div>
+
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="iden">Identificación:</span>
+              </div>
+              <input type="text" class="form-control"
+                     mask="000000000-0"
+                     id="identificacion" name="identificacion" formControlName="identificacion" placeholder="000000000-0" autofocus/>
+              &nbsp;&nbsp;&nbsp;
+
+            </div>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="nom">Nombres:</span>
+              </div>
+              <input type="text"
+                     class="form-control" id="nombres" name="nombres" formControlName="nombres" OnlyNumber="false"/>
+            </div>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="lelefono">Telefono:</span>
+              </div>
+              <input type="text"
+                     placeholder="000-000-000"
+                     mask="000-000-000"
+                     class="form-control" id="telefono" name="telefono" formControlName="telefono" />
+              <small class="alert-danger" *ngIf="clienteGroup.get('telefono').status ==='INVALID' && clienteGroup.get('telefono').dirty">Telefono invalido</small>
+            </div>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="cel">Celular:</span>
+              </div>
+              <input type="text"
+                     placeholder="(000) 000-0000"
+                     mask="(000) 000-0000"
+                     class="form-control" id="celular" name="celular" formControlName="celular" />
+              <small class="alert-danger" *ngIf="clienteGroup.get('celular').status ==='INVALID' && clienteGroup.get('celular').dirty">Celular invalido</small>
+            </div>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="email">Correo:</span>
+              </div>
+              <input type="email" class="form-control" id="correo" name="correo" formControlName="correo" />
+              <small class="alert-danger" *ngIf="clienteGroup.get('correo').status ==='INVALID' && clienteGroup.get('correo').dirty">Correo invalido</small>
+            </div>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="doc">Documento:</span>
+              </div>
+              <input type="file" class="form-control" id="documento" name="documento" formControlName="documento" />
+            </div>
+            <hr>
+            <button [disabled]="clienteGroup.status === 'INVALID'" type="submit" class="btn btn-success">
+              Actualizar
+            </button>
+          </form>
+        </div>
+        <div class="col-md-4" align="center">
+          <h3>Clientes</h3>
+          <img src="http://www.sistemasenlaweb.com/images/picIconoClientes.png" alt="" width="200">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

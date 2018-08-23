@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Cliente;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ClienteController extends Controller
 {
@@ -14,9 +16,32 @@ class ClienteController extends Controller
     {
         return response()->json(Cliente::orderBy('nombres')->get(), 200);
     }
-    public function store()
+    public function store(Request $request)
     {
-        return response()->json(Cliente::create(request()->all()), 201);
+        if ($request->hasFile('documento')){
+            $path_documento = $request->file('documento')->store('documento');
+            $cliente = new Cliente();
+            $cliente->tipo_documento = $request->input('tipo_documento');
+            $cliente->identificacion = $request->input('identificacion');
+            $cliente->nombres = $request->input('nombres');
+            $cliente->telefono = $request->input('telefono');
+            $cliente->celular = $request->input('celular');
+            $cliente->correo = $request->input('correo');
+            $cliente->documento = $path_documento;
+            $cliente->save();
+        }
+        else{
+            $cliente = new Cliente();
+            $cliente->tipo_documento = $request->input('tipo_documento');
+            $cliente->identificacion = $request->input('identificacion');
+            $cliente->nombres = $request->input('nombres');
+            $cliente->telefono = $request->input('telefono');
+            $cliente->celular = $request->input('celular');
+            $cliente->correo = $request->input('correo');
+            $cliente->documento = "documentos/log.png";
+            $cliente->save();
+        }
+        return response()->json($cliente, 201);
     }
     public function show($id)
     {

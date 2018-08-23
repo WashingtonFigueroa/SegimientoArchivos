@@ -37,7 +37,8 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="nom">Nombres:</span>
               </div>
-              <input type="text" class="form-control" id="nombres" name="nombres" formControlName="nombres" />
+              <input type="text"
+                     class="form-control" id="nombres" name="nombres" formControlName="nombres" OnlyNumber="false"/>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
@@ -53,7 +54,10 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="cel">Celular:</span>
               </div>
-              <input type="text" class="form-control" id="celular" name="celular" formControlName="celular" />
+              <input type="text"
+                     placeholder="(000) 000-0000"
+                     mask="(000) 000-0000"
+                     class="form-control" id="celular" name="celular" formControlName="celular" />
               <small class="alert-danger" *ngIf="clienteGroup.get('celular').status ==='INVALID' && clienteGroup.get('celular').dirty">Celular invalido</small>
             </div>
             <div class="form-group input-group">

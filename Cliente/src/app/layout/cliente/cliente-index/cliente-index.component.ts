@@ -90,7 +90,7 @@ export class ClienteIndexComponent implements OnInit {
     }
 
     edit(id) {
-        this.router.navigate(['acceso/component/clientes/editar/' + id]);
+        this.router.navigate(['cliente/editar/' + id]);
     }
 
     private getDismissReason(reason: any): string {
