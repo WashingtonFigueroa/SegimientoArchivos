@@ -20,4 +20,12 @@ class TipoTramite extends Model
     public function tramites() {
         return $this->hasMany('App\Tramite');
     }
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($padre) {
+            $padre->recorridos()->delete();
+            $padre->tramites()->delete();
+        });
+    }
 }

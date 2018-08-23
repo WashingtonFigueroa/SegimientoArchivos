@@ -16,4 +16,12 @@ class Cliente extends Model
         return $this->hasMany('App\Tramite');
     }
 
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($padre) {
+            $padre->tramites()->delete();
+        });
+    }
+
 }

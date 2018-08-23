@@ -14,4 +14,12 @@ class Departamento extends Model
     public function tipoTramites() {
         return $this->hasMany('App\TipoTramite');
     }
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function($padre) {
+            $padre->tipoTramites()->delete();
+        });
+    }
+
 }
