@@ -73,6 +73,10 @@
       <path value="$PROJECT_DIR$/Servidor/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/Servidor/vendor/paragonie/random_compat" />
       <path value="$PROJECT_DIR$/Servidor/vendor/psy/psysh" />
+      <path value="$PROJECT_DIR$/Servidor/vendor/namshi/jose" />
+      <path value="$PROJECT_DIR$/Servidor/vendor/tymon/jwt-auth" />
+      <path value="$PROJECT_DIR$/Servidor/vendor/symfony/polyfill-php56" />
+      <path value="$PROJECT_DIR$/Servidor/vendor/symfony/polyfill-util" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

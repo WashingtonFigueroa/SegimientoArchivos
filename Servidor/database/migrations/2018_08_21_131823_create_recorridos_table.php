@@ -16,7 +16,6 @@ class CreateRecorridosTable extends Migration
         Schema::create('recorridos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('tipo_tramite_id')->unsigned();
-            $table->integer('departamento_id')->unsigned();
             $table->foreign('tipo_tramite_id')
                   ->references('id')
                   ->on('tipo_tramites')
