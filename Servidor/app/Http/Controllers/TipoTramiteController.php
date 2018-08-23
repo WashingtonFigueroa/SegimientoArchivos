@@ -28,7 +28,6 @@ class TipoTramiteController extends Controller
         $tipo_tramite->update(request()->all());
         return response()->json($tipo_tramite, 200);
     }
-
     public function destroy($id)
     {
         $tipo_tramite = TipoTramite::find($id);

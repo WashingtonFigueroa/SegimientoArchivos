@@ -34,4 +34,6 @@ Route::resource('respaldos', 'RespaldoController', ['except' => ['edit', 'create
 
 Route::resource('usuarios', 'UsuarioController', ['except' => ['edit', 'create']]);
 
+Route::resource('privilegios', 'PrivilegioController', ['except' => ['edit', 'create']]);
+
 
