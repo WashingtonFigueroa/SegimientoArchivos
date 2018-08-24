@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {DepartamentoService} from '../departamento.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-departamento-create',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartamentoCreateComponent implements OnInit {
 
-  constructor() { }
+    departamentoGroup: FormGroup;
+    constructor(protected departamentoService: DepartamentoService,
+                protected fb: FormBuilder,
+                protected toastr: ToastrService) {
+        this.createForm();
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+    createForm() {
+        this.departamentoGroup = this.fb.group({
+            'nombre' : new FormControl('', [Validators.required]),
+            'descripcion' : new FormControl('', [Validators.required])
+        });
+    }
+    store() {
+        this.departamentoService
+            .store(this.departamentoGroup.value)
+            .subscribe((res: any) => {
+                this.toastr.success('El departamento ' + res.nombre + ' fue creado exitosament', 'Registro exitoso');
+            });
+    }
 
 }

@@ -17,6 +17,7 @@ class Tramite extends Model
         'fecha_inicio',
         'recorrido_id',
         'observacion',
+        'permiso'
     ];
     protected $dates = ['deleted_at'];
     public function cliente() {

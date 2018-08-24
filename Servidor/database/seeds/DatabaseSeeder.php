@@ -40,7 +40,8 @@ class DatabaseSeeder extends Seeder
                     'tipo_tramite_id' => $tipo_tramite->id,
                     'posicion' => $faker->numberBetween(1, 15),
                     'tiempo_estimado' => $faker->numberBetween(1, 72),
-                    'observaciones' => $faker->text(100)
+                    'observaciones' => $faker->text(100),
+                    'departamento_id' => $departamento->id
                 ]);
                 array_push($recorridos, $recorrido);
             }
@@ -63,6 +64,7 @@ class DatabaseSeeder extends Seeder
                     'fecha_inicio' => $faker->date(),
                     'recorrido_id' => $recorridos[$k]->id,
                     'observacion' => $faker->sentence,
+                    'permiso' => $k % 2 === 0? 'publico': 'recorrido',
                 ]);
                 \App\Respaldo::create([
                     'tramite_id' => $tramite->id,

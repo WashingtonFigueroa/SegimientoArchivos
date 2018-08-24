@@ -23,6 +23,7 @@ class CreateRecorridosTable extends Migration
             $table->integer('posicion')->unsigned();
             $table->integer('tiempo_estimado');
             $table->string('observaciones')->nullable();
+            $table->integer('departamento_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

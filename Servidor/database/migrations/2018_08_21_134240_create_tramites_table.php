@@ -30,6 +30,7 @@ class CreateTramitesTable extends Migration
             $table->date('fecha_inicio');
             $table->integer('recorrido_id')->unsigned();
             $table->string('observacion')->nullable();
+            $table->enum('permiso', ['publico', 'recorrido']);
             $table->softDeletes();
             $table->timestamps();
         });

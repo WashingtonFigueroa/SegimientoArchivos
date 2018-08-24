@@ -22,6 +22,7 @@ class TramiteController extends Controller
             $tramite->fecha_inicio = request()->input('fecha_inicio');
             $tramite->recorrido_id = request()->input('recorrido_id');
             $tramite->observacion = request()->input('observacion');
+            $tramite->permiso = request()->input('permiso');
             $tramite->save();
             return response()->json($tramite, 201);
         } else {
