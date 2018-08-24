@@ -52,6 +52,7 @@ import { NgAutoCompleteModule} from 'ng-auto-complete';
     imports: [
         CommonModule,
         LayoutRoutingModule,
+        NgAutoCompleteModule,
         TranslateModule,
         FormsModule,
         ReactiveFormsModule,
@@ -59,7 +60,6 @@ import { NgAutoCompleteModule} from 'ng-auto-complete';
         NgbModalModule,
         NgbDropdownModule.forRoot(),
         NgxMaskModule.forRoot(),
-        NgAutoCompleteModule
     ],
     declarations: [
         LayoutComponent,

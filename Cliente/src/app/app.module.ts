@@ -13,7 +13,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 
-
 export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 };
@@ -35,7 +34,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         FormsModule,
         ReactiveFormsModule,
         NgbModule.forRoot(),
-        BrowserAnimationsModule,
+        BrowserAnimationsModule
     ],
     declarations: [AppComponent],
     providers: [AuthGuard],
