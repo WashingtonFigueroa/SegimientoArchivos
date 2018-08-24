@@ -10,7 +10,7 @@ class DepartamentoController extends Controller
     {
         return response()->json(Departamento::orderBy('nombre')->paginate(10), 200);
     }
-    public function lista_departamnetos()
+    public function lista_departamentos()
     {
         return response()->json(Departamento::orderBy('nombre')->get(), 200);
     }

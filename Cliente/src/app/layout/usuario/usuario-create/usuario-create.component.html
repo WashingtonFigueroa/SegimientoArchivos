@@ -1,3 +1,80 @@
-<p>
-  usuario-create works!
-</p>
+<div class="container-fluid" [@routerTransition]>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-header">
+                <i class="fa fa-file"></i> &nbsp;
+                Añadir Usuario
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-8">
+                    <form role="form" (submit)="store()" [formGroup]="usuarioGroup">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="departamento">Departamento:</span>
+                            </div>
+                            <select formControlName="departamento_id" class="form-control">
+                                <option [value]="departamento.id" *ngFor="let departamento of departamentos">
+                                    {{ departamento.nombre }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="nombres">Nombre:</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nombres" formControlName="nombres">
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="cuenta">Cuenta:</span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Cuenta" formControlName="cuenta">
+                        </div>
+                        <div class="alert alert-warning" role="alert" *ngIf="errors.cuenta !== ''" [innerHTML]="errors.cuenta"></div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="password">Password:</span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                        </div>
+                        <div class="alert alert-warning" role="alert" *ngIf="errors.password !== ''" [innerHTML]="errors.password"></div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="password_confirmation">Confirmacion de Password:</span>
+                            </div>
+                            <input type="password" class="form-control" placeholder="Confirmacion de password"
+                                   formControlName="password_confirmation">
+                        </div>
+
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <button type="submit"
+                                        class="btn btn-primary"
+                                        style="width: 150px">
+                                    <span class="fa fa-save"></span>
+                                    Guardar
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <button
+                                    [disabled]="usuarioGroup.status === 'INVALID'"
+                                    type="reset"
+                                    class="btn btn-success" style="width: 150px">
+                                    <span class="fa fa-file"></span>
+                                    Nuevo
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="col-md-4" align="center">
+                    <h3>Usuarios</h3>
+                    <img src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt="" width="200">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

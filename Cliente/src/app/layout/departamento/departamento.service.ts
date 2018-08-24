@@ -27,6 +27,6 @@ export class DepartamentoService {
         return this.http.delete(this.base + 'departamentos/' + id );
     }
     lista_departamentos() {
-        return this.http.get(this.base + 'lista_departamnetos');
+        return this.http.get(this.base + 'lista_departamentos');
     }
 }
