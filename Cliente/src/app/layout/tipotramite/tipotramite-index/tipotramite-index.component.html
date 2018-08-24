@@ -1,12 +1,11 @@
-<div [@routerTransition]>
-  <!--<app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>-->
-  <div class="container-fluid">
+  <div class="container-fluid" [@routerTransition]>
     <br>
     <div class="row">
       <div class="col-md-12">
         <div class="card-header">
           <button type="button" [routerLink]="['/tipo_tramite/crear']" class="btn btn-primary">
-            Nuevo
+            Nuevo &nbsp;&nbsp;
+            <i class="fa fa-file"></i>
           </button>
           &nbsp;&nbsp;&nbsp;Lista Tipo Tramites
         </div>
@@ -75,7 +74,6 @@
       </div>
     </div>
   </div>
-</div>
 
 
 

@@ -1,11 +1,11 @@
-<div [@routerTransition]>
-    <!--<app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>-->
-    <div class="container-fluid">
+<div class="container-fluid" [@routerTransition]>
+    <br>
         <div class="row">
             <div class="col-md-12">
                 <div class="card-header">
                     <button type="button"[routerLink]="['/usuario/crear']"class="btn btn-primary">
-                        Nuevo
+                        Nuevo &nbsp;&nbsp;
+                        <i class="fa fa-user"></i> &nbsp;
                     </button>
                     &nbsp;&nbsp;&nbsp;Lista Usuarios
                 </div>
@@ -90,4 +90,3 @@
             <!--<button type="button" class="btn btn-secondary" >Close</button>-->
         </div>
     </ng-template>
-</div>
