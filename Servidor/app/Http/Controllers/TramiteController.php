@@ -8,7 +8,7 @@ class TramiteController extends Controller
 {
     public function index()
     {
-        return response()->json(Tramite::with('tipoTramite')->orderBy('id')->paginate(10), 200);
+        return response()->json(Tramite::with('tipoTramite','cliente')->orderBy('id')->paginate(10), 200);
     }
     public function store()
     {
