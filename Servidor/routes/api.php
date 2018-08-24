@@ -26,7 +26,7 @@ Route::get('lista_tipo_tramites','TipoTramiteController@lista_tipo_tramites');
 Route::resource('recorridos', 'RecorridoController', ['except' => ['edit', 'create']]);
 
 Route::resource('clientes', 'ClienteController', ['except' => ['edit', 'create']]);
-Route::get('lista_clientes','TipoTramiteController@lista_clientes');
+Route::get('lista_clientes','ClienteController@lista_clientes');
 
 
 Route::resource('tramites', 'TramiteController', ['except' => ['edit', 'create']]);

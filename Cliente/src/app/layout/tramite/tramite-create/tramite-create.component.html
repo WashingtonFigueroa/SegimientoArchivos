@@ -9,18 +9,13 @@
       <hr>
       <div class="row">
         <div class="col-md-8">
-          <form role="form">
-
-            <div class="form-group input-group">
+          <form (submit)="store()" role="form" [formGroup]="tramiteGroup">
+            <div class="form-group input-group" *ngIf="clientesSearch !== null">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="cliente">RUC/CI. :</span>
               </div>
-              <select class="form-control">
-                <option>Juan</option>
-                <option>marcelo</option>
-              </select>
+              <ng-autocomplete (selected)="Selected($event)" [classes]="['']" [group]="clientesSearch"></ng-autocomplete>
             </div>
-
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="nombres">Nombres :</span>
@@ -29,18 +24,22 @@
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="correo">Correo :</span>
+                <span class="input-group-text" id="cor">Correo :</span>
               </div>
               <input type="text" class="form-control" disabled>
             </div>
-
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="tel">Telefono :</span>
+              </div>
+              <input type="text" class="form-control" disabled>
+            </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="tipo">Tipo Tramite</span>
               </div>
-              <select class="form-control">
-                <option>1321</option>
-                <option>1561465</option>
+              <select name="tipo_tramite_id" id="tipotramite" class="form-control" formControlName="tipo_tramite_id">
+                <option [value]="tipotramite.tipo_tramite_id" *ngFor="let tipotramite of tipotramites"> {{ tipotramite.nombre }}</option>
               </select>
             </div>
             <div class="form-group input-group">
@@ -61,7 +60,12 @@
               </div>
               <input type="text" class="form-control" placeholder="...">
             </div>
-
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="permisos">Permiso:</span>
+              </div>
+              <input type="text" class="form-control" placeholder="...">
+            </div>
             <hr>
             <div class="row">
               <div class="col-md-3">

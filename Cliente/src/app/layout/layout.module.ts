@@ -45,7 +45,8 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioIndexComponent } from './usuario/usuario-index/usuario-index.component';
 import { UsuarioCreateComponent } from './usuario/usuario-create/usuario-create.component';
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
-import {UsuarioService} from './usuario/usuario.service';
+import { UsuarioService} from './usuario/usuario.service';
+import { NgAutoCompleteModule} from 'ng-auto-complete';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import {UsuarioService} from './usuario/usuario.service';
         JsonpModule,
         NgbModalModule,
         NgbDropdownModule.forRoot(),
-        NgxMaskModule.forRoot()
+        NgxMaskModule.forRoot(),
+        NgAutoCompleteModule
     ],
     declarations: [
         LayoutComponent,
