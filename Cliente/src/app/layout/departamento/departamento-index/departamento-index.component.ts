@@ -3,11 +3,13 @@ import {DepartamentoService} from '../departamento.service';
 import {environment} from '../../../../environments/environment.prod';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+import {routerTransition} from '../../../router.animations';
 
 @Component({
   selector: 'app-departamento-index',
   templateUrl: './departamento-index.component.html',
-  styleUrls: ['./departamento-index.component.scss']
+  styleUrls: ['./departamento-index.component.scss'],
+  animations: [routerTransition()]
 })
 export class DepartamentoIndexComponent implements OnInit {
     index: number = null;
@@ -104,5 +106,4 @@ export class DepartamentoIndexComponent implements OnInit {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
         });
     }
-
 }

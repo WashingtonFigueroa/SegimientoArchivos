@@ -1,3 +1,93 @@
-<p>
-  usuario-index works!
-</p>
+<div [@routerTransition]>
+    <!--<app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-header">
+                    <button type="button"[routerLink]="['/usuario/crear']"class="btn btn-primary">
+                        Nuevo
+                    </button>
+                    &nbsp;&nbsp;&nbsp;Lista Usuarios
+                </div>
+
+                <div class="card-body table-responsive">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group input-group">
+                                <input type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th>N. </th>
+                            <th>Departamento</th>
+                            <th>Cuenta</th>
+                            <th>Nombres</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let usuario of usuarios; let i = index">
+                            <td>{{ i + 1}}</td>
+                            <td>{{ usuario.departamento.nombre }}</td>
+                            <td>{{ usuario.cuenta }}</td>
+                            <td>{{ usuario.nombres }}</td>
+                            <td align="center">
+                                <button (click)="edit(usuario.id)" type="button" class="btn btn-info">
+                                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                </button>&nbsp;
+                                <button type="button" class="btn btn-danger" (click)="confirm(i, usuario.id,confirmModal)">
+                                    <i class="fa fa-eraser" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="container-fluid" *ngIf="usuarios !== null">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav>
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <button class="page-link" [disabled]="prev_page === null" (click)="prevPage()">Anterior</button>
+                                        </li>
+                                        <li class="page-item" *ngFor="let page of pages">
+                                            <a class="page-link" (click)="loadPagination(page.url)">{{ page.item }}</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <button class="page-link" [disabled]="next_page === null" (click)="nextPage()">Siguiente</button>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end paginate-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #confirmModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Confirmar eliminación</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Esta seguro de confirmar la eliminacion? &hellip;</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" (click)="c('cerrar')">No</button>
+            <button class="btn btn-danger" (click)="c('si')">Esta bien</button>
+            <!--<button type="button" class="btn btn-secondary" >Close</button>-->
+        </div>
+    </ng-template>
+</div>
