@@ -12,6 +12,9 @@ class UsuarioController extends Controller
     public function index() {
         return response()->json(Usuario::with('departamento')->paginate(10), 200);
     }
+    public function show($id) {
+        return response()->json(Usuario::find($id), 200);
+    }
     public function store(StoreUsuario $request){
         $usuario = new Usuario();
         $usuario->departamento_id = $request->input('departamento_id');
@@ -25,7 +28,6 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         $usuario->departamento_id = request()->input('departamento_id');
         $usuario->nombres = request()->input('nombres');
-        $usuario->cuenta = request()->input('cuenta');
         $usuario->save();
         return response()->json($usuario, 200);
     }

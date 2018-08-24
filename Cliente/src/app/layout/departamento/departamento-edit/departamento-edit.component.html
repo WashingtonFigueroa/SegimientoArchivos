@@ -1,3 +1,42 @@
-<p>
-  departamento-edit works!
-</p>
+<div class="container-fluid" [@routerTransition]>
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <div class="card-header">
+                <i class="fa fa-user"></i> &nbsp;
+                Editar Departamento
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-8">
+                    <form (submit)="update()" role="form" [formGroup]="departamentoGroup" *ngIf="departamento !== null">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="tipo">Nombre: </span>
+                            </div>
+                            <input type="text" class="form-control"
+                                   id="nombre" name="nombre" formControlName="nombre" placeholder="Nombre departamento" autofocus/>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="iden">Descripcion: </span>
+                            </div>
+                            <input type="text" class="form-control"
+                                   id="descripcion" name="descripcion" formControlName="descripcion"
+                                   placeholder="Descripcion de departamento"/>
+                        </div>
+                        <hr>
+                        <button [disabled]="departamentoGroup.status === 'INVALID'" type="submit" class="btn btn-success">
+                            Actualizar
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-4" align="center">
+                    <h3>Departamentos</h3>
+                    <img src="https://images.vexels.com/media/users/3/147510/preview2/7c5e0dcec09383827996ac7c86216db0-escritorio-de-oficina-plana-con-elementos.jpg" alt="" width="200">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

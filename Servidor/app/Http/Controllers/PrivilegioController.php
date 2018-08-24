@@ -8,7 +8,7 @@ class PrivilegioController extends Controller
 {
     public function index()
     {
-        return response()->json(Privilegio::orderBy('ruta')->get(), 200);
+        return response()->json(Privilegio::with('departamento')->orderBy('ruta')->get(), 200);
     }
     public function store()
     {
