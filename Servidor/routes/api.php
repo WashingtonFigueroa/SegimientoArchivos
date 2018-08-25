@@ -40,4 +40,4 @@ Route::resource('privilegios', 'PrivilegioController', ['except' => ['edit', 'cr
 Route::resource('departamentos', 'DepartamentoController', ['except' => ['edit', 'create']]);
 Route::get('lista_departamentos','DepartamentoController@lista_departamentos');
 
-
+Route::get('ver_archivo/{id}', 'TramiteController@ver_archivo');

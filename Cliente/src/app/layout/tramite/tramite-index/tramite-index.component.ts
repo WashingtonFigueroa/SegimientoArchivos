@@ -3,13 +3,16 @@ import {environment} from '../../../../environments/environment.prod';
 import {TramiteService} from '../tramite.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+import {routerTransition} from '../../../router.animations';
 
 @Component({
   selector: 'app-tramite-index',
   templateUrl: './tramite-index.component.html',
-  styleUrls: ['./tramite-index.component.scss']
+  styleUrls: ['./tramite-index.component.scss'],
+  animations: [routerTransition()]
 })
 export class TramiteIndexComponent implements OnInit {
+    environment = environment;
     tramites: any = [];
     tramitesBK: any = [];
     index: number = null;
@@ -20,7 +23,6 @@ export class TramiteIndexComponent implements OnInit {
     pages: any = [];
     prev_page: any = null;
     next_page: any = null;
-    environment = environment;
 
     constructor(protected tramiteService: TramiteService,
                 protected modalService: NgbModal,
@@ -28,6 +30,7 @@ export class TramiteIndexComponent implements OnInit {
 
     ngOnInit() {
         this.tramiteService.index().subscribe((res: any) => {
+            console.log(res);
             this.tramites = res.data;
             this.tramitesBK = res.data;
             this.getPages(res.last_page);

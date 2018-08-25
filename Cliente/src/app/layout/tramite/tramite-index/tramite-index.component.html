@@ -40,9 +40,9 @@
               <td>  {{ tramite.id }} </td>
               <td>  {{ tramite.cliente.identificacion }} </td>
               <td>  {{ tramite.tipo_tramite.nombre }} </td>
-              <td> <i class="fa fa-fw fa-file-archive-o"></i></td>
+              <td>  <a href="{{environment.base}}{{environment.ver_archivo}}{{tramite.id}}" target="_blank"><i class="fa fa-fw fa-file-archive-o"></i></a></td>
               <td>  {{ tramite.fecha_inicio }} </td>
-              <td>  {{ tramite.recorrido_id }} </td>
+              <td>  {{ tramite.departamento }} </td>
               <td>  {{ tramite.estado }} </td>
               <td>  {{ tramite.observacion }} </td>
                 <td align="center">

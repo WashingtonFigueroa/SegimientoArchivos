@@ -14,62 +14,62 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="cliente">RUC/CI. :</span>
               </div>
-              <ng-autocomplete (selected)="Selected($event)" [classes]="['']" [group]="clientesSearch"></ng-autocomplete>
+              <ng-autocomplete class="form-control" (selected)="Selected($event)" [classes]="['']" [group]="clientesSearch"></ng-autocomplete>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="nombres">Nombres :</span>
               </div>
-              <input type="text" class="form-control" disabled>
+              <input type="text" class="form-control" [value]="cliente.nombres" disabled>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="cor">Correo :</span>
               </div>
-              <input type="text" class="form-control" disabled>
+              <input type="text" class="form-control" [value]="cliente.correo" disabled>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="tel">Telefono :</span>
               </div>
-              <input type="text" class="form-control" disabled>
+              <input type="text" class="form-control" [value]="cliente.telefono" disabled>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="tipo">Tipo Tramite</span>
               </div>
               <select name="tipo_tramite_id" id="tipotramite" class="form-control" formControlName="tipo_tramite_id">
-                <option [value]="tipotramite.tipo_tramite_id" *ngFor="let tipotramite of tipotramites"> {{ tipotramite.nombre }}</option>
+                <option [value]="tipotramite.id" *ngFor="let tipotramite of tipotramites"> {{ tipotramite.nombre }}</option>
               </select>
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="archivo">Seleccionar Archivo:</span>
               </div>
-              <input type="file" class="form-control" placeholder="...">
+              <input type="file" #archivo class="form-control">
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="fecha">Fecha:</span>
               </div>
-              <input type="date" class="form-control">
+              <input type="date" class="form-control" formControlName="fecha_inicio">
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="observacion">Observación:</span>
               </div>
-              <input type="text" class="form-control" placeholder="...">
+              <input type="text" class="form-control" formControlName="observacion" placeholder="">
             </div>
             <div class="form-group input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="permisos">Permiso:</span>
+                <span class="input-group-text" id="permisos">Permiso publico:</span>
               </div>
-              <input type="text" class="form-control" placeholder="...">
+              <input type="checkbox" class="permiso" formControlName="permiso">
             </div>
             <hr>
             <div class="row">
               <div class="col-md-3">
-                <button class="btn btn-primary" style="width: 150px">
+                <button class="btn btn-primary"  type="submit" style="width: 150px">
                   <span class="fa fa-save"></span>
                   Guardar
                 </button>

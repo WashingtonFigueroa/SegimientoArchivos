@@ -26,4 +26,7 @@ export class TramiteService {
     destroy(id) {
         return this.http.delete(this.base + 'tramites/' + id );
     }
+    ver_archivo(id) {
+        return this.http.get(this.base + 'ver_archivo/' + id);
+    }
 }
