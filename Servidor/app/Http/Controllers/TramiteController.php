@@ -45,20 +45,47 @@ class TramiteController extends Controller
     }
     public function update($id)
     {
-        $cliente = Tramite::find($id);
-        $cliente->update(request()->all());
-        return response()->json($cliente, 200);
+
+        $recorrido = Tramite::find($id)
+                            ->tipoTramite()
+                            ->first()
+                            ->recorridos()
+                            ->orderby('posicion', 'desc')
+                            ->first();
+        $tramite = Tramite::find($id);
+        if ($recorrido->id === (int)request()->input('recorrido_id')) {
+            $tramite->fill(request()->all());
+            $tramite->estado = 'finalizado';
+            $tramite->save();
+        } else {
+            $tramite->fill(request()->all());
+            $tramite->estado = 'proceso';
+            $tramite->save();
+        }
+        return response()->json($tramite, 200);
     }
 
     public function destroy($id)
     {
-        $cliente = Tramite::find($id);
-        $cliente->delete();
-        return response()->json(['exito' => 'Tramite ' . $cliente->nombres . ' eliminado exitosamente'], 200);
+        $tramite = Tramite::find($id);
+        $tramite->delete();
+        return response()->json(['exito' => 'Tramite ' . $tramite->nombres . ' eliminado exitosamente'], 200);
     }
 
     public function ver_archivo($id) {
         $archivo = Tramite::find($id)->archivo;
         return response()->file(storage_path('app/' . $archivo));
+    }
+    public function recorridos_tramite($tramite_id) {
+        $recorridos = Tramite::find($tramite_id)
+                                ->tipoTramite()
+                                ->first()
+                                ->recorridos()
+                                ->join('tipo_tramites', 'tipo_tramites.id', 'recorridos.tipo_tramite_id')
+                                ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
+                                ->orderBy('recorridos.posicion')
+                                ->select('recorridos.*', 'departamentos.nombre as departamento', 'tipo_tramites.nombre as tipo_tramite')
+                                ->get();
+        return response()->json($recorridos, 200);
     }
 }

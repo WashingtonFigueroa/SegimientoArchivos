@@ -8,7 +8,11 @@ class RecorridoController extends Controller
 {
     public function index()
     {
-        return response()->json(Recorrido::orderBy('posicion')->get(), 200);
+        $recorridos = Recorrido::join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
+                                ->select('recorridos.*', 'departamentos.nombre')
+                                ->orderBy('recorridos.posicion')
+                                ->get();
+        return response()->json($recorridos, 200);
     }
     public function store()
     {

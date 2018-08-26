@@ -29,4 +29,7 @@ export class TramiteService {
     ver_archivo(id) {
         return this.http.get(this.base + 'ver_archivo/' + id);
     }
+    recorridos_tramite(tramite_id) {
+        return this.http.get(this.base + 'recorridos_tramite/' + tramite_id);
+    }
 }

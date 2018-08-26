@@ -1,3 +1,55 @@
-<p>
-  tramite-edit works!
-</p>
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-header">
+                <i class="fa fa-file"></i> &nbsp;
+                Editar tramite
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-8">
+                    <form (submit)="update()" role="form" *ngIf="tramite !== null" [formGroup]="tramiteGroup">
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="recorrido_label">Recorrido:</span>
+                            </div>
+                            <select class="form-control" formControlName="recorrido_id">
+                                <option [value]="recorrido.id"
+                                        [selected]="recorrido.id === tramite.recorrido_id"
+                                        *ngFor="let recorrido of recorridos">
+                                    {{ recorrido.tipo_tramite }} | Paso {{ recorrido.posicion }} | Dep. {{ recorrido.departamento }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="observacion_label">Observacion:</span>
+                            </div>
+                            <input type="text" class="form-control"
+                                   id="observacion"
+                                   formControlName="observacion"
+                                   name="observacion"/>
+                        </div>
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="permiso_label">Permiso público:</span>
+                            </div>
+                            <input type="checkbox" class="permiso" formControlName="permiso">
+                        </div>
+                        <hr>
+                        <button [disabled]="tramiteGroup.status === 'INVALID'" type="submit" class="btn btn-success">
+                            Actualizar
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-4" align="center">
+                    <br>
+                    <h3>Tramite</h3>
+                    <hr>
+                    <img src="http://www.funcionpublica.gov.co/eva/admon/files/empresas/ZW1wcmVzYV83Ng==/imagenes/1485389466_d4282d7e456ce04dbb5431b38657816c.png" alt="" width="200">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

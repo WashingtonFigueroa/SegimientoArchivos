@@ -30,6 +30,7 @@ Route::get('lista_clientes','ClienteController@lista_clientes');
 
 
 Route::resource('tramites', 'TramiteController', ['except' => ['edit', 'create']]);
+Route::get('recorridos_tramite/{tramite_id}', 'TramiteController@recorridos_tramite');
 
 Route::resource('respaldos', 'RespaldoController', ['except' => ['edit', 'create']]);
 
