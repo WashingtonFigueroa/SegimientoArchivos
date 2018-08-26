@@ -3,6 +3,7 @@ import {DepartamentoService} from '../departamento.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {routerTransition} from '../../../router.animations';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-departamento-create',
@@ -15,6 +16,7 @@ export class DepartamentoCreateComponent implements OnInit {
     departamentoGroup: FormGroup;
     constructor(protected departamentoService: DepartamentoService,
                 protected fb: FormBuilder,
+                protected router: Router,
                 protected toastr: ToastrService) {
         this.createForm();
     }
@@ -32,6 +34,7 @@ export class DepartamentoCreateComponent implements OnInit {
             .store(this.departamentoGroup.value)
             .subscribe((res: any) => {
                 this.departamentoGroup.reset();
+                this.router.navigate(['departamento']);
                 this.toastr.success('El departamento ' + res.nombre + ' fue creado exitosament', 'Registro exitoso');
             });
     }

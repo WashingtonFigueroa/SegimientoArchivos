@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Hash;
 class UsuarioController extends Controller
 {
     public function index() {
-        return response()->json(Usuario::with('departamento')->paginate(10), 200);
+        return response()->json(Usuario::with('departamento')
+            ->where('departamento_id', '!=', 1)
+            ->paginate(10), 200);
     }
     public function show($id) {
         return response()->json(Usuario::find($id), 200);
