@@ -37,7 +37,8 @@ Route::resource('usuarios', 'UsuarioController', ['except' => ['edit', 'create']
 
 Route::resource('privilegios', 'PrivilegioController', ['except' => ['edit', 'create']]);
 
-Route::resource('departamentos', 'DepartamentoController', ['except' => ['edit', 'create']]);
+Route::resource('departamentos', 'DepartamentoController');
 Route::get('lista_departamentos','DepartamentoController@lista_departamentos');
+Route::get('listaPrivilegios/{departamento_id}', 'DepartamentoController@listaPrivilegios');
 
 

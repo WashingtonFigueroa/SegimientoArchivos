@@ -10,31 +10,73 @@ import {PrivilegioService} from '../privilegio.service';
   styleUrls: ['./privilegio-index.component.scss']
 })
 export class PrivilegioIndexComponent implements OnInit {
-    index: number = null;
-    closeResult: string = null;
-    privilegio_id: number = null;
     privilegios: any = [];
     privilegiosBK: any = [];
-    environment = environment;
+    index: number = null;
+    privilegio_id: number = null;
+    closeResult: string;
     search = '';
 
+    pages: any = [];
+    prev_page: any = null;
+    next_page: any = null;
+    environment = environment;
+
     constructor(protected privilegioService: PrivilegioService,
-                protected router: Router,
-                protected modalService: NgbModal) { }
+                protected modalService: NgbModal,
+                protected router: Router) {}
 
     ngOnInit() {
-        this.privilegioService.index()
-            .subscribe((res: any) => {
-                this.privilegios = res;
-                this.privilegiosBK = res;
-            });
-    }
-    buscar(search) {
-        this.privilegios = this.privilegiosBK.filter((privilegio: any) => {
-            return privilegio.departamento.nombre.toLowerCase().indexOf(search) > -1 ||
-                privilegio.ruta.toLowerCase().indexOf(search) > -1
+        this.privilegioService.index().subscribe((res: any) => {
+            this.privilegios = res.data;
+            this.privilegiosBK = res.data;
+            this.getPages(res.last_page);
+            this.prev_page = res.prev_page_url;
+            this.next_page = res.next_page_url;
         });
     }
+
+    buscar(search) {
+        this.privilegios = this.privilegiosBK.filter((privilegio: any) => {
+            return privilegio.departamento.nombre.toLowerCase().indexOf(search) > -1;
+        });
+    }
+
+    getPages(last_page) {
+        for (let i = 1; i <= last_page; i++ ) {
+            this.pages.push(
+                {
+                    url: this.environment.base + 'privilegios?page=' + i ,
+                    item: i
+                }
+            );
+        }
+    }
+    loadPagination(url) {
+        this.privilegioService.indexPerPage(url)
+            .subscribe((res: any) => {
+                this.privilegios = res.data;
+                this.prev_page = res.prev_page_url;
+                this.next_page = res.next_page_url;
+            });
+    }
+    prevPage() {
+        this.privilegioService.indexPerPage(this.prev_page)
+            .subscribe( (res: any) => {
+                this.privilegios = res.data;
+                this.prev_page = res.prev_page_url;
+                this.next_page = res.next_page_url;
+            });
+    }
+    nextPage() {
+        this.privilegioService.indexPerPage(this.next_page)
+            .subscribe( (res: any) => {
+                this.privilegios = res.data;
+                this.prev_page = res.prev_page_url;
+                this.next_page = res.next_page_url;
+            });
+    }
+
     destroy(index, id) {
         this.privilegioService.destroy(id)
             .subscribe(res => {
@@ -43,7 +85,7 @@ export class PrivilegioIndexComponent implements OnInit {
     }
 
     edit(id) {
-        this.router.navigate(['privilegio/editar/' + id]);
+        this.router.navigate(['cliente/editar/' + id]);
     }
 
     private getDismissReason(reason: any): string {
@@ -72,3 +114,4 @@ export class PrivilegioIndexComponent implements OnInit {
         });
     }
 }
+

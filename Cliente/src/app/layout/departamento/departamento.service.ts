@@ -29,4 +29,7 @@ export class DepartamentoService {
     lista_departamentos() {
         return this.http.get(this.base + 'lista_departamentos');
     }
+    listaPrivilegios(departamento_id) {
+        return this.http.get(this.base + 'listaPrivilegios/' + departamento_id);
+    }
 }
