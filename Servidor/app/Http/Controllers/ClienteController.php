@@ -16,6 +16,10 @@ class ClienteController extends Controller
     {
         return response()->json(Cliente::orderBy('nombres')->get(), 200);
     }
+    public function ver_documento($id) {
+        $documento = Cliente::find($id)->documento;
+        return response()->file(storage_path('app/' . $documento));
+    }
     public function store(Request $request)
     {
         if ($request->hasFile('documento')){
@@ -38,7 +42,7 @@ class ClienteController extends Controller
             $cliente->telefono = $request->input('telefono');
             $cliente->celular = $request->input('celular');
             $cliente->correo = $request->input('correo');
-            $cliente->documento = "documentos/log.png";
+            $cliente->documento = "documento/log.png";
             $cliente->save();
         }
         return response()->json($cliente, 201);

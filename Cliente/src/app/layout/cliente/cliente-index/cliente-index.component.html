@@ -36,7 +36,7 @@
             <tbody>
             <tr *ngFor="let cliente of clientes; let i = index">
               <td> {{ cliente.id }}</td>
-              <td>  <a href="{{environment.base}}{{environment.ver_archivo}}{{cliente.id}}" target="_blank"><i class="fa fa-fw fa-file-archive-o"></i></a></td>
+              <td>  <a href="{{environment.base}}{{environment.ver_documento}}{{cliente.id}}" target="_blank"><i class="fa fa-fw fa-file-archive-o"></i></a></td>
               <td> {{ cliente.identificacion }}</td>
               <td> {{ cliente.nombres }}</td>
               <td> {{ cliente.telefono }}</td>
