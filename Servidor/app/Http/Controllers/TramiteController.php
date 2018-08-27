@@ -109,7 +109,7 @@ class TramiteController extends Controller
             ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
             ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
             ->where('departamentos.id', $departamento_id)
-            ->where('clientes.identificacion', 'like', '%' . $search . '%')
+            ->orWhere('clientes.identificacion', 'like', '%' . $search . '%')
             ->orWhere('tipo_tramites.nombre', 'like', '%'. $search. '%')
             ->orderBy('tramites.id', 'desc')
             ->select('tramites.*', 'departamentos.nombre as departamento')

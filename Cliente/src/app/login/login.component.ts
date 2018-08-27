@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     createForm() {
         this.loginGroup = this.fb.group({
             'cuenta' : new FormControl('', [Validators.required]),
-            'password' : new FormControl('', [Validators.pattern(/^[a-zA-Z0-9$]{5,}$/)])
+            'password' : new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9$]{5,}$/)])
         });
     }
     login() {
