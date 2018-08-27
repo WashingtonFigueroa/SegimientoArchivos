@@ -11,14 +11,17 @@ export class PrivilegioService {
     index() {
         return this.http.get(this.base + 'privilegios');
     }
+    indexPerPage(url) {
+        return this.http.get( url );
+    }
     show(id) {
         return this.http.get(this.base + 'privilegios/' + id);
     }
     store(request) {
         return this.http.post(this.base + 'privilegios', request);
     }
-    update(request, id) {
-        return this.http.put(this.base + 'privilegios/' + id, request);
+    update(departamento_id, form) {
+        return this.http.put(this.base + 'privilegios/' + departamento_id, form);
     }
     destroy(id) {
         return this.http.delete(this.base + 'privilegios/' + id );

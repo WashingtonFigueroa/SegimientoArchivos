@@ -28,7 +28,6 @@
                             <th>Departamento</th>
                             <th>Acceso</th>
                             <th>Activo</th>
-                            <th>Acciones</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,34 +39,31 @@
                                 <i *ngIf="privilegio.activo" class="fa fa-check"></i>
                                 <i *ngIf="!privilegio.activo" class="fa fa-times"></i>
                             </td>
-                            <td align="center">
-                                <button (click)="edit(privilegio.id)" type="button" class="btn btn-info">
-                                    <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                                </button>&nbsp;
-                                <button type="button" class="btn btn-danger" (click)="confirm(i, privilegio.id,confirmModal)">
-                                    <i class="fa fa-eraser" aria-hidden="true"></i>
-                                </button>
-                            </td>
                         </tr>
                         </tbody>
                     </table>
+                    <!-- end table-->
+                    <div class="container-fluid" *ngIf="privilegios !== null">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <nav>
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <button class="page-link" [disabled]="prev_page === null" (click)="prevPage()">Anterior</button>
+                                        </li>
+                                        <li class="page-item" *ngFor="let page of pages">
+                                            <a class="page-link" (click)="loadPagination(page.url)">{{ page.item }}</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <button class="page-link" [disabled]="next_page === null" (click)="nextPage()">Siguiente</button>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end paginate-->
                 </div>
             </div>
         </div>
     </div>
-    <ng-template #confirmModal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title">Confirmar eliminación</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <p>Esta seguro de confirmar la eliminacion? &hellip;</p>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-default" (click)="c('cerrar')">No</button>
-            <button class="btn btn-danger" (click)="c('si')">Esta bien</button>
-            <!--<button type="button" class="btn btn-secondary" >Close</button>-->
-        </div>
-    </ng-template>
