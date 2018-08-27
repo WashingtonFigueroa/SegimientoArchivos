@@ -13,28 +13,23 @@
         </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa fa-building'" [count]="26" [label]="'dpto. Gerencia!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa fa-fw fa-bar-chart-o'" [count]="12" [label]="'dpto. Financiero!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-tasks'" [count]="124" [label]="'dpto. Administartivo!'" ></app-stat>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa fa-fw fa-edit'" [count]="13" [label]="'dpto. Créditos!'"></app-stat>
-        </div>
-    </div>
-    <hr />
-    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
+       <div class="row">
+           <div class="col-xl-3 col-lg-6">
+               <app-stat [bgClass]="'primary'" [icon]="'fa fa-file-archive-o'" [count]="26" [label]="'Tramites Finalizados'" ></app-stat>
+           </div>
+           <div class="col-xl-3 col-lg-6">
+               <app-stat [bgClass]="'warning'" [icon]="'fa fa-file'" [count]="12" [label]="'Tramites en Proceso'" ></app-stat>
+           </div>
+           <div class="col-xl-3 col-lg-6">
+               <app-stat [bgClass]="'danger'" [icon]="'fa fa-file-o'" [count]="13" [label]="'Tramites Pendientes'"></app-stat>
+       </div>
+       </div>
     <hr />
     <div class="row">
         <div class="col-lg-8">
             <div class="card card-default">
                 <div class="card-header">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
+                    <i class="fa fa-clock-o fa-fw"></i> Objetivos de la Cooperativa
                 </div>
                 <!-- /.card-header -->
                 <app-timeline></app-timeline>
@@ -44,14 +39,12 @@
         </div>
         <!-- /.col-lg-8 -->
         <div class="col-lg-4">
-            <div class="card card-default mb-3">
-                <div class="card-header">
-                    <i class="fa fa-bell fa-fw"></i> Notifications card
-                </div>
-                <!-- /.card-header -->
-                <app-notification></app-notification>
-                <!-- /.card-body -->
-            </div>
+            <!--<div class="card card-default mb-3">-->
+                <!--<div class="card-header">-->
+                    <!--<i class="fa fa-bell fa-fw"></i> Notificaciones-->
+                <!--</div>-->
+                <!--<app-notification></app-notification>-->
+            <!--</div>-->
             <!-- /.card -->
 
             <app-chat></app-chat>
