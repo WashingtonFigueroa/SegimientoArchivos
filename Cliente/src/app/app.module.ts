@@ -12,6 +12,7 @@ import { AuthGuard } from './shared';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
+import {LoginService} from './login.service';
 
 export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -37,7 +38,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         BrowserAnimationsModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard],
+    providers: [AuthGuard, LoginService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

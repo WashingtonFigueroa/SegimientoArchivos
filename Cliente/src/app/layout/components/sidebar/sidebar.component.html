@@ -1,33 +1,34 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <hr>
     <div class="list-group">
+        <a class="list-group-item">{{ usuario }}</a>
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>{{ 'Principal' | translate }}</span>
+            <span>{{ 'Dashboard' | translate }}</span>
         </a>
         <a routerLink="/departamento" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-building"></i>&nbsp;
-            <span>{{ 'Departamento' | translate }}</span>
+            <i class="fa fa-building"></i>
+            <span>{{ 'Department' | translate }}</span>
         </a>
         <a routerLink="/usuario" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-user"></i>&nbsp;
-            <span>{{ 'Usuario' | translate }}</span>
+            <i class="fa fa-fw fa-user"></i>
+            <span>{{ 'User' | translate }}</span>
         </a>
         <a routerLink="/cliente" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-users"></i>&nbsp;
-            <span>{{ 'Cliente' | translate }}</span>
+            <span>{{ 'Client' | translate }}</span>
         </a>
         <a routerLink="/tipo_tramite" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-file"></i>&nbsp;
-            <span>{{ 'Tipo Tramite' | translate }}</span>
+            <span>{{ 'Kind of Procedure' | translate }}</span>
         </a>
         <a routerLink="/tramite" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-file-archive-o"></i>&nbsp;
-            <span>{{ 'Tramite' | translate }}</span>
+            <span>{{ 'Procedure' | translate }}</span>
         </a>
         <a routerLink="/recorrido" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>{{ 'Recorrido' | translate }}</span>
+            <span>{{ 'Route' | translate }}</span>
         </a>
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;

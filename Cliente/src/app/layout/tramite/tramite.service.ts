@@ -32,4 +32,10 @@ export class TramiteService {
     recorridos_tramite(tramite_id) {
         return this.http.get(this.base + 'recorridos_tramite/' + tramite_id);
     }
+    tramites_departamento(departamento_id) {
+        return this.http.get(this.base + 'tramites_departamento/' + departamento_id);
+    }
+    buscar_tramite(request) {
+        return this.http.post(this.base + 'buscar_tramite', request);
+    }
 }

@@ -42,17 +42,16 @@ export class UsuarioCreateComponent implements OnInit {
         });
     }
     store() {
-
+        this.errors = {
+            cuenta: '',
+            password: ''
+        };
         this.usuarioService.store(this.usuarioGroup.value)
             .subscribe((res: any) => {
                 console.log(res);
                 this.usuarioGroup.reset();
                 this.toastr.success('El usuario ' + res.nombres + ' fue creado exitosamente', 'Registro exitoso');
             }, (error: any) => {
-                this.errors = {
-                    cuenta: '',
-                    password: ''
-                }
                 if (error.status === 422 ) {
                     this.toastr.error('Vuelva a llenar el formulario', 'Error de Validacion');
                 }

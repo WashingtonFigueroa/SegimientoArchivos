@@ -88,4 +88,33 @@ class TramiteController extends Controller
                                 ->get();
         return response()->json($recorridos, 200);
     }
+
+    public function tramites_departamento($departamento_id) {
+        $tramites = Tramite::with('tipoTramite','cliente')
+            ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
+            ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
+            ->where('departamentos.id', $departamento_id)
+            ->orderBy('tramites.id', 'desc')
+            ->select('tramites.*', 'departamentos.nombre as departamento')
+            ->paginate(10);
+        return response()->json($tramites, 200);
+    }
+    public function buscar_tramite() {
+        $search = request()->input('search');
+        $departamento_id = request()->input('departamento_id');
+
+        $tramites = Tramite::with('tipoTramite','cliente')
+            ->join('clientes', 'clientes.id', 'tramites.cliente_id')
+            ->join('tipo_tramites', 'tipo_tramites.id', 'tramites.tipo_tramite_id')
+            ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
+            ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
+            ->where('departamentos.id', $departamento_id)
+            ->where('clientes.identificacion', 'like', '%' . $search . '%')
+            ->orWhere('tipo_tramites.nombre', 'like', '%'. $search. '%')
+            ->orderBy('tramites.id', 'desc')
+            ->select('tramites.*', 'departamentos.nombre as departamento')
+            ->paginate(10);
+        return response()->json($tramites, 200);
+
+    }
 }

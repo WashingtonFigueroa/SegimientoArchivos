@@ -16,9 +16,12 @@ use Illuminate\Http\Request;
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });*/
+
 Route::post('login', 'AuthController@login');
 
 Route::resource('tramites', 'TramiteController', ['except' => ['edit', 'create']]);
+Route::get('tramites_departamento/{departamento_id}', 'TramiteController@tramites_departamento');
+Route::post('buscar_tramite', 'TramiteController@buscar_tramite');
 
 Route::resource('tipo_tramites', 'TipoTramiteController', ['except' => ['edit', 'create']]);
 Route::get('lista_tipo_tramites','TipoTramiteController@lista_tipo_tramites');

@@ -28,5 +28,14 @@
     "Pending Task" : "Pending Task",
     "In queue" : "In queue",
     "Mail" : "Mail",
-    "View All" : "View All"
+    "View All" : "View All",
+    "Department" : "Departament",
+    "User" : "User",
+    "Client" : "Client",
+    "Kind of Procedure" : "Kind of Procedure",
+    "Procedure" : "Procedure",
+    "Route" : "Route",
+    "Privileges" : "Privileges",
+    "Management Department" : "Management Department",
+    "File Tracking" : "File Tracking"
 }

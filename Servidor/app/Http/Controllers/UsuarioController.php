@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\StoreUsuario;
 use App\Usuario;
 use Illuminate\Support\Facades\Hash;

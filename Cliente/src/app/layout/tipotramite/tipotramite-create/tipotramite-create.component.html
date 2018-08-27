@@ -7,52 +7,52 @@
         Añadir Tipo tramite
       </div>
       <hr>
-      <div class="row">
         <div class="col-md-8">
-          <form (submit)="store()" role="form" *ngIf="departamentos !== null" [formGroup]="tipotramiteGroup">
-            <div class="form-group">
-              <label>
-                * Seleccione departamneto
-              </label>
-              <select name="departamento_id" id="departamento_id" class="form-control" formControlName="departamento_id">
-                <option [value]="departamento.id" *ngFor="let departamento of departamentos"> {{ departamento.nombre }}</option>
-              </select>
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="nombres">Nombre:</span>
-              </div>
-              <input type="text" class="form-control" id="nombre" formControlName="nombre" name="nombre"/>
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="lelefono">Descripción:</span>
-              </div>
-              <input type="text" class="form-control" id="descripcion" formControlName="descripcion" name="descripcion"/>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <button [disabled]="tipotramiteGroup.status === 'INVALID'" type="submit" class="btn btn-primary" style="width: 150px">
-                  <span class="fa fa-save"></span>
-                  Guardar
-                </button>
-              </div>
-              <div class="col-md-6">
-                <button type="reset" class="btn btn-success" style="width: 150px">
-                  <span class="fa fa-file"></span>
-                  Nuevo
-                </button>
-              </div>
-            </div>
-          </form>
+            <form (submit)="store()" role="form" *ngIf="departamentos !== null" [formGroup]="tipotramiteGroup">
+                <div class="form-group">
+                    <label>
+                        * Seleccione departamneto
+                    </label>
+                    <select name="departamento_id" id="departamento_id" class="form-control" formControlName="departamento_id">
+                        <option [value]="departamento.id" *ngFor="let departamento of departamentos"> {{ departamento.nombre }}</option>
+                    </select>
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="nombres">Nombre:</span>
+                    </div>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre" name="nombre"/>
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="lelefono">Descripción:</span>
+                    </div>
+                    <input type="text" class="form-control" id="descripcion" formControlName="descripcion" name="descripcion"/>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <button [disabled]="tipotramiteGroup.status === 'INVALID'" type="submit" class="btn btn-primary" style="width: 150px">
+                            <span class="fa fa-save"></span>
+                            Guardar
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="reset" class="btn btn-success" style="width: 150px">
+                            <span class="fa fa-file"></span>
+                            Nuevo
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="col-md-4" align="center">
-          <br>
-          <h3>Tipo Tramite</h3>
-          <hr>
-          <img src="https://transparencia.aragon.es/sites/default/files/images/icon_documents.png" alt="" width="200">
+            <br>
+            <h3>Tipo Tramite</h3>
+            <hr>
+            <img src="https://transparencia.aragon.es/sites/default/files/images/icon_documents.png" alt="" width="200">
         </div>
-      </div>
+
+        <div class="row"></div>
     </div>
   </div>
 </div>

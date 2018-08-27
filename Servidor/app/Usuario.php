@@ -32,4 +32,5 @@ class Usuario extends Authenticatable
     public function departamento() {
         return $this->belongsTo('App\Departamento');
     }
+
 }

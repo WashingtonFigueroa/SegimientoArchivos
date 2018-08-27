@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    base : 'http://localhost:8000/api/',
+    base : 'http://localhost:8080/api/',
     ver_archivo: 'ver_archivo/'
 };

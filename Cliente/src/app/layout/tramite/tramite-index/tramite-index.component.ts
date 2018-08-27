@@ -4,6 +4,7 @@ import {TramiteService} from '../tramite.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {routerTransition} from '../../../router.animations';
+import {LoginService} from '../../../login.service';
 
 @Component({
   selector: 'app-tramite-index',
@@ -19,17 +20,19 @@ export class TramiteIndexComponent implements OnInit {
     idtramite: number = null;
     closeResult: string;
     search = '';
-
+    departamento_id = null;
     pages: any = [];
     prev_page: any = null;
     next_page: any = null;
 
     constructor(protected tramiteService: TramiteService,
+                protected loginService: LoginService,
                 protected modalService: NgbModal,
                 protected router: Router) { }
 
     ngOnInit() {
-        this.tramiteService.index().subscribe((res: any) => {
+        this.departamento_id = this.loginService.getUsuario().departamento_id;
+        this.tramiteService.tramites_departamento(this.departamento_id).subscribe((res: any) => {
             console.log(res);
             this.tramites = res.data;
             this.tramitesBK = res.data;
@@ -39,11 +42,14 @@ export class TramiteIndexComponent implements OnInit {
         });
     }
     buscar(search) {
-        this.tramites = this.tramitesBK.filter((tramite: any) => {
-            return tramite.cliente.identificacion.indexOf(search) > -1 ||
-                tramite.tipo_tramite.nombre.toLowerCase().indexOf(search) > -1 ||
-                tramite.fecha.indexOf(search) > -1;
-        });
+        const request = {
+          'search' : search,
+          'departamento_id' : this.departamento_id
+        };
+        this.tramiteService.buscar_tramite(request)
+            .subscribe((res: any) => {
+               this.tramites = res.data;
+            });
     }
     getPages(last_page) {
         for (let i = 1; i <= last_page; i++ ) {

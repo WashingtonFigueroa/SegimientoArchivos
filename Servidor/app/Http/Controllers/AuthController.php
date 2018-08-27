@@ -2,40 +2,27 @@
 
 namespace App\Http\Controllers;
 use App\Departamento;
+use App\Http\Requests\LoginAuth;
 use App\Usuario;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
-use Validator;
 class AuthController extends Controller
 {
-    public function login() {
-        $credentials = request()->only('cuenta', 'password');
-        $rules = [
-            'cuenta' => 'required',
-            'password' => 'required|min:5',
-        ];
-        $validator = Validator::make($credentials, $rules);
-        if ($validator->fails()) {
-            return response()->json([
-                'autenticado' => false,
-                'mensaje' => $validator->messages()
-            ], 500);
-        }
-
+    public function login(LoginAuth $request) {
+        $credentials = $request->only('cuenta', 'password');
         try {
-            if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json([
-                    'autenticado' => false,
-                    'mensaje' => 'Las credenciales son incorrectas'
-                ], 401);
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
             }
         } catch (JWTException $e) {
-            return response()->json([
-                'autenticado' => false,
-                'mensaje' => 'Error durante la autenticacion, por favor intente nuevamente'],
-                500);
+            return response()->json(['error' => 'could_not_create_token'], 500);
         }
-        $usuario = Usuario::where('cuenta', \request()->input('cuenta'))->first();
+
+        $usuario = Usuario::join('departamentos', 'usuarios.departamento_id', 'departamentos.id')
+                            ->where('cuenta', $request->input('cuenta'))
+                            ->select('usuarios.*', 'departamentos.nombre as departamento')
+                            ->first();
+
         $privilegios = Departamento::find($usuario->departamento_id)
                                     ->privilegios()
                                     ->orderBy('ruta')
@@ -45,7 +32,7 @@ class AuthController extends Controller
             'usuario' => $usuario,
             'privilegios' => $privilegios,
             'token' => $token,
-            'mensaje' => 'Usuario autenticado exitosamente'
+            'mensaje' => 'Usuario '. $usuario->cuenta .' autenticado exitosamente'
         ], 200);
     }
 }

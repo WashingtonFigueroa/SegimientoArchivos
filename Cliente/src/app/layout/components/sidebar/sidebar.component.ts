@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import {LoginService} from '../../../login.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -12,10 +13,14 @@ export class SidebarComponent {
     collapsed: boolean = false;
     showMenu: string = '';
     pushRightClass: string = 'push-right';
+    usuario = '';
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
     
-    constructor(private translate: TranslateService, public router: Router) {
+    constructor(private translate: TranslateService,
+                protected loginService: LoginService,
+                public router: Router) {
+        this.usuario = this.loginService.getUsuario().cuenta;
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();

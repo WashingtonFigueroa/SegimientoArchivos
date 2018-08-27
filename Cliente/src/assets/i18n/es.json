@@ -1,6 +1,6 @@
 {
     "Dashboard": "Principal",
-    "Charts": "Caracteres",
+    "Charts": "Gráficas",
     "Tables": "Tablas",
     "Forms": "Formularios",
     "Bootstrap Element": "Elementos Bootstrap",
@@ -28,5 +28,14 @@
     "Pending Task" : "Tarea pendiente",
     "In queue" : "En cola",
     "Mail" : "Correo",
-    "View All" : "Ver todo"
+    "View All" : "Ver todo",
+    "Department" : "Departamento",
+    "User" : "Usuario",
+    "Client" : "Cliente",
+    "Kind of Procedure" : "Tipo de Tramite",
+    "Procedure" : "Tramite",
+    "Route" : "Recorrido",
+    "Privileges" : "Privilegios",
+    "Management Department" : "Departamento de Gerencia",
+    "File Tracking" : "Seguimiento de Archivos"
 }
