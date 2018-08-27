@@ -2,92 +2,113 @@
   <br>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-header">
-        <i class="fa fa-file-archive-o"></i> &nbsp;
-        Añadir Tramite
-      </div>
-      <hr>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Inicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <i class="fa fa-file-archive-o"></i> &nbsp;&nbsp;
+            <a routerLink="/tramite" >Lista de Tramites</a>
+          </li>
+          <li class="breadcrumb-item active">
+            Añadir Tramite
+          </li>
+        </ol>
+      </nav>
+      <br>
       <div class="row">
         <div class="col-md-8">
           <form (submit)="store()" role="form" [formGroup]="tramiteGroup">
-            <div class="form-group input-group" *ngIf="clientesSearch !== null">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="cliente">RUC/CI. :</span>
+            <div class="card">
+              <h5 class="card-header">
+                Ingrese Tramite :
+              </h5>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group input-group" *ngIf="clientesSearch !== null">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="cliente">RUC/CI. :</span>
+                      </div>
+                      <ng-autocomplete class="form-control" (selected)="Selected($event)" [classes]="['']" [group]="clientesSearch"></ng-autocomplete>
+                    </div>
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="nombres">Nombres :</span>
+                      </div>
+                      <input type="text" class="form-control" [value]="cliente.nombres" disabled>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="cor">Correo :</span>
+                      </div>
+                      <input type="text" class="form-control" [value]="cliente.correo" disabled>
+                    </div>
+                    <div class="form-group input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="tel">Telefono :</span>
+                      </div>
+                      <input type="text" class="form-control" [value]="cliente.telefono" disabled>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="tipo">Tipo Tramite</span>
+                  </div>
+                  <select name="tipo_tramite_id" id="tipotramite" class="form-control" formControlName="tipo_tramite_id">
+                    <option [value]="tipotramite.id" *ngFor="let tipotramite of tipotramites"> {{ tipotramite.nombre }}</option>
+                  </select>
+                </div>
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="archivo">Seleccionar Archivo:</span>
+                  </div>
+                  <input type="file" #archivo class="form-control">
+                </div>
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="fecha">Fecha:</span>
+                  </div>
+                  <input type="date" class="form-control" formControlName="fecha_inicio">
+                </div>
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="observacion">Observación:</span>
+                  </div>
+                  <input type="text" class="form-control" formControlName="observacion" placeholder="">
+                </div>
+                <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="permisos">Permiso público:</span>
+                  </div>
+                  <input type="checkbox" class="permiso" formControlName="permiso">
+                </div>
               </div>
-              <ng-autocomplete class="form-control" (selected)="Selected($event)" [classes]="['']" [group]="clientesSearch"></ng-autocomplete>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-md-3">
+                    <button class="btn btn-primary"  type="submit" style="width: 150px">
+                      <span class="fa fa-save"></span>
+                      Guardar
+                    </button>
+                  </div>
+                  <div class="col-md-3">
+                    <button type="reset" class="btn btn-success" style="width: 150px">
+                      <span class="fa fa-file"></span>
+                      Nuevo
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="nombres">Nombres :</span>
-              </div>
-              <input type="text" class="form-control" [value]="cliente.nombres" disabled>
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="cor">Correo :</span>
-              </div>
-              <input type="text" class="form-control" [value]="cliente.correo" disabled>
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="tel">Telefono :</span>
-              </div>
-              <input type="text" class="form-control" [value]="cliente.telefono" disabled>
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="tipo">Tipo Tramite</span>
-              </div>
-              <select name="tipo_tramite_id" id="tipotramite" class="form-control" formControlName="tipo_tramite_id">
-                <option [value]="tipotramite.id" *ngFor="let tipotramite of tipotramites"> {{ tipotramite.nombre }}</option>
-              </select>
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="archivo">Seleccionar Archivo:</span>
-              </div>
-              <input type="file" #archivo class="form-control">
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="fecha">Fecha:</span>
-              </div>
-              <input type="date" class="form-control" formControlName="fecha_inicio">
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="observacion">Observación:</span>
-              </div>
-              <input type="text" class="form-control" formControlName="observacion" placeholder="">
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="permisos">Permiso publico:</span>
-              </div>
-              <input type="checkbox" class="permiso" formControlName="permiso">
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-3">
-                <button class="btn btn-primary"  type="submit" style="width: 150px">
-                  <span class="fa fa-save"></span>
-                  Guardar
-                </button>
-              </div>
-              <div class="col-md-3">
-                <button type="reset" class="btn btn-success" style="width: 150px">
-                  <span class="fa fa-file"></span>
-                  Nuevo
-                </button>
-              </div>
-            </div>
-
           </form>
         </div>
         <div class="col-md-4" align="center">
           <br>
-          <h3>Tramite</h3>
-          <hr>
           <img src="https://www.microdata.es/wp-content/uploads/G_investigacion-expediente.jpg" alt="" width="200">
         </div>
       </div>

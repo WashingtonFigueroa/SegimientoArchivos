@@ -35,7 +35,7 @@ export class DepartamentoCreateComponent implements OnInit {
             .subscribe((res: any) => {
                 this.departamentoGroup.reset();
                 this.router.navigate(['departamento']);
-                this.toastr.success('El departamento ' + res.nombre + ' fue creado exitosament', 'Registro exitoso');
+                this.toastr.success('El departamento ' + res.nombre + ' fue creado exitosamente', 'Registro exitoso');
             });
     }
 

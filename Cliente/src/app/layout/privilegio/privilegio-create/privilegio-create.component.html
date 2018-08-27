@@ -2,47 +2,63 @@
   <br>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-header">
-        <i class="fa fa-fw fa-gear"></i> &nbsp;
-        Gestine permisos
-      </div>
-      <hr>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Inicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <i class="fa fa-fw fa-gear"></i>  &nbsp;
+            <a routerLink="/privilegio" >Lista de Privilegios</a>
+          </li>
+          <li class="breadcrumb-item active">
+            Gestión de Permisos
+          </li>
+        </ol>
+      </nav>
+      <br>
       <div class="row">
         <div class="col-md-4">
-          <h4 class="card-title">Registro de privilegios</h4>
           <form (submit)="update()">
-            <section class="form-group">
-              <label>* Seleccione Departamento</label>
-              <select (change)="loadPrivilegios(departamento_id)" class="form-control" name="departamento_id" [(ngModel)]="departamento_id">
-                <option [value]="departamento.id" *ngFor="let departamento of departamentos">
-                  {{ departamento.nombre }}
-                </option>
-              </select>
-            </section>
-            <section class="form-group">
-              <br>
-              <input type="checkbox" name="departamento" [value]="privilegio.departamento" [(ngModel)]="privilegio.departamento">
-              Departamentos <br>
-              <input type="checkbox" name="usuario" [value]="privilegio.usuario" [(ngModel)]="privilegio.usuario">
-              Usuarios <br>
-              <input type="checkbox" name="privilegio" [value]="privilegio.privilegio" [(ngModel)]="privilegio.privilegio">
-              Privilegios <br>
-              <input type="checkbox" name="cliente" [value]="privilegio.cliente" [(ngModel)]="privilegio.cliente">
-              Clientes <br>
-              <input type="checkbox" name="tipo_tramite" [value]="privilegio.tipo_tramite" [(ngModel)]="privilegio.tipo_tramite">
-              Tipo Tramites <br>
-              <input type="checkbox" name="tramite" [value]="privilegio.tramite" [(ngModel)]="privilegio.tramite">
-              Tramites <br>
-              <input type="checkbox" name="recorrido" [value]="privilegio.recorrido" [(ngModel)]="privilegio.recorrido">
-              Recorridos <br>
-            </section>
-            <button class="btn btn-primary">Asignar privilegio</button>
+            <div class="card">
+              <h5 class="card-header">
+                Registro de privilegios :
+              </h5>
+              <div class="card-body">
+                <section class="form-group">
+                  <label>* Seleccione Departamento</label>
+                  <select (change)="loadPrivilegios(departamento_id)" class="form-control" name="departamento_id" [(ngModel)]="departamento_id">
+                    <option [value]="departamento.id" *ngFor="let departamento of departamentos">
+                      {{ departamento.nombre }}
+                    </option>
+                  </select>
+                </section>
+                <section class="form-group">
+                  <br>
+                  <input type="checkbox" name="departamento" [value]="privilegio.departamento" [(ngModel)]="privilegio.departamento">
+                  Departamentos <br>
+                  <input type="checkbox" name="usuario" [value]="privilegio.usuario" [(ngModel)]="privilegio.usuario">
+                  Usuarios <br>
+                  <input type="checkbox" name="privilegio" [value]="privilegio.privilegio" [(ngModel)]="privilegio.privilegio">
+                  Privilegios <br>
+                  <input type="checkbox" name="cliente" [value]="privilegio.cliente" [(ngModel)]="privilegio.cliente">
+                  Clientes <br>
+                  <input type="checkbox" name="tipo_tramite" [value]="privilegio.tipo_tramite" [(ngModel)]="privilegio.tipo_tramite">
+                  Tipo Tramites <br>
+                  <input type="checkbox" name="tramite" [value]="privilegio.tramite" [(ngModel)]="privilegio.tramite">
+                  Tramites <br>
+                  <input type="checkbox" name="recorrido" [value]="privilegio.recorrido" [(ngModel)]="privilegio.recorrido">
+                  Recorridos <br>
+                </section>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary">Asignar privilegio</button>
+              </div>
+            </div>
           </form>
         </div>
         <div class="col-md-4" align="center">
           <br>
-          <h3>Gestión de Privilegios</h3>
-          <hr>
           <div class="col align-self-center">
             <img alt="JAAP" src="\assets\images\privilegios.png" width="200" />
           </div>

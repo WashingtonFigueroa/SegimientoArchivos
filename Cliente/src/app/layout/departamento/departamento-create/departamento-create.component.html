@@ -2,56 +2,69 @@
   <br>
   <div class="row">
     <div class="col-md-12">
-      <div class="card-header">
-        <i class="fa fa-building"></i> &nbsp;
-        Añadir Departamento
-      </div>
-      <hr>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="/dashboard">Inicio</a>
+          </li>
+          <li class="breadcrumb-item">
+            <i class="fa fa-building"></i> &nbsp;
+            <a routerLink="/departamento" >Lista Departamentos</a>
+          </li>
+          <li class="breadcrumb-item active">
+            Añadir Departamento
+          </li>
+        </ol>
+      </nav>
+      <br>
       <div class="row">
         <div class="col-md-8">
           <form role="form" (submit)="store()" [formGroup]="departamentoGroup">
-            <h4> Datos Departamento</h4>
-            <br>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="nombres">Nombre:</span>
+          <div class="card">
+            <h5 class="card-header">
+              Ingrese Departamento :
+            </h5>
+            <div class="card-body">
+              <div class="form-group input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="nombres">Nombre:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
               </div>
-              <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
-            </div>
-            <div class="form-group input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="descripcion">Descripción:</span>
-              </div>
-              <input type="text" class="form-control" placeholder="Descripcion" formControlName="descripcion">
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-3">
-                <button type="submit"
-                        class="btn btn-primary"
-                        style="width: 150px">
-                  <span class="fa fa-save"></span>
-                  Guardar
-                </button>
-              </div>
-              <div class="col-md-3">
-                <button
-                        [disabled]="departamentoGroup.status === 'INVALID'"
-                        type="reset"
-                        class="btn btn-success" style="width: 150px">
-                  <span class="fa fa-file"></span>
-                  Nuevo
-                </button>
+              <div class="form-group input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="descripcion">Descripción:</span>
+                </div>
+                <input type="text" class="form-control" placeholder="Descripcion" formControlName="descripcion">
               </div>
             </div>
-
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-md-3">
+                  <button type="submit"
+                          class="btn btn-primary"
+                          style="width: 150px">
+                    <span class="fa fa-save"></span>
+                    Guardar
+                  </button>
+                </div>
+                <div class="col-md-3">
+                  <button
+                          [disabled]="departamentoGroup.status === 'INVALID'"
+                          type="reset"
+                          class="btn btn-success" style="width: 150px">
+                    <span class="fa fa-file"></span>
+                    Nuevo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           </form>
         </div>
         <div class="col-md-4" align="center">
           <br>
-            <h3>Departamentos</h3>
-          <hr>
-            <img src="data:image/png;base64,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" alt="" width="200">
+            <img src="assets/images/departamento.jpg" alt="" width="200">
         </div>
       </div>
     </div>

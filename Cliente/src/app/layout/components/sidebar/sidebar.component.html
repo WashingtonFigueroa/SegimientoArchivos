@@ -3,11 +3,11 @@
     <div class="list-group">
         <a class="list-group-item">{{ usuario }}</a>
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
+            <i class="fa fa-home"></i>&nbsp;
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
         <a routerLink="/departamento" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-building"></i>
+            <i class="fa fa-sitemap"></i>
             <span>{{ 'Department' | translate }}</span>
         </a>
         <a routerLink="/usuario" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -22,20 +22,18 @@
             <i class="fa fa-fw fa-file"></i>&nbsp;
             <span>{{ 'Kind of Procedure' | translate }}</span>
         </a>
+        <a routerLink="/recorrido" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-calendar-check-o"></i>&nbsp;
+            <span>{{ 'Route' | translate }}</span>
+        </a>
         <a routerLink="/tramite" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-file-archive-o"></i>&nbsp;
             <span>{{ 'Procedure' | translate }}</span>
-        </a>
-        <a routerLink="/recorrido" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-dashboard"></i>&nbsp;
-            <span>{{ 'Route' | translate }}</span>
         </a>
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;
             <span>{{ 'Charts' | translate }}</span>
         </a>
-
-
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">
                 <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
