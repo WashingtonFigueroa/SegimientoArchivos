@@ -38,4 +38,7 @@ export class TramiteService {
     buscar_tramite(request) {
         return this.http.post(this.base + 'buscar_tramite', request);
     }
+    cantidad_estado_tramites(departamento_id) {
+        return this.http.get(this.base + 'cantidad_estado_tramites/' + departamento_id);
+    }
 }

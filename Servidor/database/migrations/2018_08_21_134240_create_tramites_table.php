@@ -26,7 +26,7 @@ class CreateTramitesTable extends Migration
                 ->on('tipo_tramites')
                 ->onDelete('cascade');
             $table->string('archivo');
-            $table->enum('estado', ['finalizado', 'proceso']);
+            $table->enum('estado', ['finalizado', 'proceso', 'pendiente']);
             $table->date('fecha_inicio');
             $table->integer('recorrido_id')->unsigned();
             $table->string('observacion')->nullable();

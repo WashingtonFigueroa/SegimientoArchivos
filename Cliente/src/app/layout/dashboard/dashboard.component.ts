@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
+import {TramiteService} from '../tramite/tramite.service';
+import {LoginService} from '../../login.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -8,10 +10,18 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class DashboardComponent implements OnInit {
+    public tramites : any = null;
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
 
-    constructor() {
+    constructor(protected tramiteService: TramiteService,
+                protected loginService: LoginService) {
+        const departamento_id = this.loginService.getUsuario().departamento_id;
+        this.tramiteService.cantidad_estado_tramites(departamento_id)
+            .subscribe(res => {
+                console.log(res);
+                this.tramites = res;
+            });
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg'

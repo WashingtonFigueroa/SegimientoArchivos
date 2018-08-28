@@ -70,7 +70,7 @@ export class TramiteCreateComponent implements OnInit {
             'cliente_id' : new FormControl(0, Validators.required),
             'tipo_tramite_id' : new FormControl(0, [Validators.required]),
             'archivo' : new FormControl(''),
-            'estado' : new FormControl('proceso', Validators.required),
+            'estado' : new FormControl('pendiente', Validators.required),
             'fecha_inicio' : new FormControl('', Validators.required),
             'recorrido_id' : new FormControl('', Validators.required),
             'observacion' : new FormControl(''),

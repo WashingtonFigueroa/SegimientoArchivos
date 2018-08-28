@@ -22,6 +22,8 @@ Route::post('login', 'AuthController@login');
 Route::resource('tramites', 'TramiteController', ['except' => ['edit', 'create']]);
 Route::get('tramites_departamento/{departamento_id}', 'TramiteController@tramites_departamento');
 Route::post('buscar_tramite', 'TramiteController@buscar_tramite');
+Route::get('cantidad_estado_tramites/{departamento_id}', 'TramiteController@cantidad_estado_tramites');
+
 
 Route::resource('tipo_tramites', 'TipoTramiteController', ['except' => ['edit', 'create']]);
 Route::get('lista_tipo_tramites','TipoTramiteController@lista_tipo_tramites');
