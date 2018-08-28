@@ -46,23 +46,9 @@ class TramiteController extends Controller
     }
     public function update($id)
     {
-
-        $recorrido = Tramite::find($id)
-                            ->tipoTramite()
-                            ->first()
-                            ->recorridos()
-                            ->orderby('posicion', 'desc')
-                            ->first();
         $tramite = Tramite::find($id);
-        if ($recorrido->id === (int)request()->input('recorrido_id')) {
-            $tramite->fill(request()->all());
-            $tramite->estado = 'finalizado';
-            $tramite->save();
-        } else {
-            $tramite->fill(request()->all());
-            $tramite->estado = 'proceso';
-            $tramite->save();
-        }
+        $tramite->fill(request()->all());
+        $tramite->save();
         return response()->json($tramite, 200);
     }
 
@@ -115,17 +101,6 @@ class TramiteController extends Controller
             ->orderBy('tramites.id', 'desc')
             ->select('tramites.*', 'departamentos.nombre as departamento')
             ->paginate(10);
-/*        $tramites = Tramite::with('tipoTramite','cliente')
-            ->join('clientes', 'clientes.id', 'tramites.cliente_id')
-            ->join('tipo_tramites', 'tipo_tramites.id', 'tramites.tipo_tramite_id')
-            ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
-            ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
-            ->where('departamentos.id', $departamento_id)
-            ->orWhere('clientes.identificacion', 'like', '%' . $search . '%')
-            ->orWhere('tipo_tramites.nombre', 'like', '%'. $search. '%')
-            ->orderBy('tramites.id', 'desc')
-            ->select('tramites.*', 'departamentos.nombre as departamento')
-            ->paginate(10);*/
         return response()->json($tramites, 200);
 
     }
