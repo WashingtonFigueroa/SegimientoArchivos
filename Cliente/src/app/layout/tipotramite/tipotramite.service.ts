@@ -29,4 +29,7 @@ export class TipotramiteService {
     lista_tipo_tramites() {
         return this.http.get(this.base + 'lista_tipo_tramites');
     }
+    tipo_tramites_departamento(departamento_id) {
+        return this.http.get(this.base + 'tipo_tramites_departamento/' + departamento_id);
+    }
 }

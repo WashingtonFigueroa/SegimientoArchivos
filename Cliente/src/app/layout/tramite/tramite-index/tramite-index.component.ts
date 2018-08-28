@@ -55,7 +55,7 @@ export class TramiteIndexComponent implements OnInit {
         for (let i = 1; i <= last_page; i++ ) {
             this.pages.push(
                 {
-                    url: this.environment.base + 'tramites?page=' + i ,
+                    url: this.environment.base + 'tramites_departamento/' + this.departamento_id + '?page=' + i ,
                     item: i
                 }
             );

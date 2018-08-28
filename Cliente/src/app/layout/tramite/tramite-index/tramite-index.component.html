@@ -37,15 +37,15 @@
             </thead>
             <tbody>
             <tr *ngFor="let tramite of tramites; let i = index">
-              <td>  {{ tramite.id }} </td>
-              <td>  {{ tramite.cliente.identificacion }} </td>
-              <td>  {{ tramite.tipo_tramite.nombre }} </td>
-              <td>  <a href="{{environment.base}}{{environment.ver_archivo}}{{tramite.id}}" target="_blank"><i class="fa fa-fw fa-file-archive-o"></i></a></td>
-              <td>  {{ tramite.fecha_inicio }} </td>
-              <td>  {{ tramite.departamento }} </td>
-              <td>  {{ tramite.estado }} </td>
-              <td>  {{ tramite.observacion }} </td>
-                <td align="center">
+                <td [class.publico]="tramite.permiso === 'publico'">  {{ tramite.id }} </td>
+                <td>  {{ tramite.cliente.identificacion }} </td>
+                <td>  {{ tramite.tipo_tramite.nombre }} </td>
+                <td>  <a href="{{environment.base}}{{environment.ver_archivo}}{{tramite.id}}" target="_blank"><i class="fa fa-fw fa-file-archive-o"></i></a></td>
+                <td>  {{ tramite.fecha_inicio }} </td>
+                <td>  {{ tramite.departamento }} </td>
+                <td>  {{ tramite.estado }} </td>
+                <td>  {{ tramite.observacion }} </td>
+                <td class="controls">
                     <button (click)="edit(tramite.id)" type="button" class="btn btn-info">
                         <i class="fa fa-pencil-square" aria-hidden="true"></i>
                     </button>

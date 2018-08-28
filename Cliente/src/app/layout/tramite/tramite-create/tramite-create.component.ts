@@ -6,6 +6,7 @@ import {ClienteService} from '../../cliente/cliente.service';
 import {TipotramiteService} from '../../tipotramite/tipotramite.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {LoginService} from '../../../login.service';
 
 @Component({
   selector: 'app-tramite-create',
@@ -30,11 +31,13 @@ export class TramiteCreateComponent implements OnInit {
     constructor(protected tramiteService: TramiteService,
                 protected clienteService: ClienteService,
                 protected tipotramiteService: TipotramiteService,
+                protected loginService: LoginService,
                 protected router: Router,
                 protected fb: FormBuilder,
                 protected toastr: ToastrService) {
         this.createForm();
-        this.tipotramiteService.lista_tipo_tramites().subscribe(res => this.tipotramites = res);
+        const departamento_id = this.loginService.getUsuario().departamento_id;
+        this.tipotramiteService.tipo_tramites_departamento(departamento_id).subscribe(res => this.tipotramites = res);
         this.clienteService.lista_clientes().subscribe(res => {
             this.clientes = res;
             this.load(res);

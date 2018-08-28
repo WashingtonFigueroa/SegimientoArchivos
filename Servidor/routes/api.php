@@ -27,7 +27,7 @@ Route::get('cantidad_estado_tramites/{departamento_id}', 'TramiteController@cant
 
 Route::resource('tipo_tramites', 'TipoTramiteController', ['except' => ['edit', 'create']]);
 Route::get('lista_tipo_tramites','TipoTramiteController@lista_tipo_tramites');
-
+Route::get('tipo_tramites_departamento/{departamento_id}', 'TipoTramiteController@tipo_tramites_departamento');
 Route::resource('recorridos', 'RecorridoController', ['except' => ['edit', 'create']]);
 
 Route::resource('clientes', 'ClienteController', ['except' => ['edit', 'create']]);

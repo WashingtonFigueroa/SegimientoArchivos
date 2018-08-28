@@ -95,23 +95,27 @@ class TramiteController extends Controller
                             ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
                             ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
                             ->where('recorridos.departamento_id', $departamento_id)
+                            ->orWhere('tramites.permiso', 'publico')
                             ->orderBy('tramites.id', 'desc')
                             ->select('tramites.*', 'departamentos.nombre as departamento')
                             ->paginate(10);
-        /*$tramites = Tramite::with('tipoTramite','cliente')
-            ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
-            ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
-            ->where('departamentos.id', $departamento_id)
-            ->orderBy('tramites.id', 'desc')
-            ->select('tramites.*', 'departamentos.nombre as departamento')
-            ->paginate(10);*/
         return response()->json($tramites, 200);
     }
     public function buscar_tramite() {
-        $search = request()->input('search');
         $departamento_id = request()->input('departamento_id');
-
-        $tramites = Tramite::with('tipoTramite','cliente')
+        $tramites = Tramite::with('tipoTramite', 'cliente')
+            ->join('clientes', 'tramites.cliente_id', 'clientes.id')
+            ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
+            ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
+            ->where('recorridos.departamento_id', $departamento_id)
+            ->orWhere('tramites.permiso', 'publico')
+            ->where(function ($query) {
+                $query->where('clientes.identificacion', 'like' , '%' . request()->input('search') . '%');
+            })
+            ->orderBy('tramites.id', 'desc')
+            ->select('tramites.*', 'departamentos.nombre as departamento')
+            ->paginate(10);
+/*        $tramites = Tramite::with('tipoTramite','cliente')
             ->join('clientes', 'clientes.id', 'tramites.cliente_id')
             ->join('tipo_tramites', 'tipo_tramites.id', 'tramites.tipo_tramite_id')
             ->join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
@@ -121,29 +125,26 @@ class TramiteController extends Controller
             ->orWhere('tipo_tramites.nombre', 'like', '%'. $search. '%')
             ->orderBy('tramites.id', 'desc')
             ->select('tramites.*', 'departamentos.nombre as departamento')
-            ->paginate(10);
+            ->paginate(10);*/
         return response()->json($tramites, 200);
 
     }
     public function cantidad_estado_tramites($departamento_id) {
-        $tramites_pendientes = Departamento::find($departamento_id)
-                ->join('tipo_tramites', 'tipo_tramites.departamento_id', 'departamentos.id')
-                ->join('tramites', 'tramites.tipo_tramite_id', 'tipo_tramites.id')
+        $tramites_pendientes = Tramite::join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
+                ->where('recorridos.departamento_id', $departamento_id)
                 ->where('tramites.estado', 'pendiente')
                 ->select('tramites.*')
                 ->count();
-        $tramites_proceso = Departamento::find($departamento_id)
-            ->join('tipo_tramites', 'tipo_tramites.departamento_id', 'departamentos.id')
-            ->join('tramites', 'tramites.tipo_tramite_id', 'tipo_tramites.id')
-            ->where('tramites.estado', 'proceso')
-            ->select('tramites.*')
-            ->count();
-        $tramites_finalizados = Departamento::find($departamento_id)
-            ->join('tipo_tramites', 'tipo_tramites.departamento_id', 'departamentos.id')
-            ->join('tramites', 'tramites.tipo_tramite_id', 'tipo_tramites.id')
-            ->where('tramites.estado', 'finalizado')
-            ->select('tramites.*')
-            ->count();
+        $tramites_proceso = Tramite::join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
+                ->where('recorridos.departamento_id', $departamento_id)
+                ->where('tramites.estado', 'proceso')
+                ->select('tramites.*')
+                ->count();
+        $tramites_finalizados = Tramite::join('recorridos', 'recorridos.id', 'tramites.recorrido_id')
+                ->where('recorridos.departamento_id', $departamento_id)
+                ->where('tramites.estado', 'finalizado')
+                ->select('tramites.*')
+                ->count();
         return response()->json([
             'pendientes' => $tramites_pendientes,
             'proceso' => $tramites_proceso,
