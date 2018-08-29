@@ -3,11 +3,13 @@ import {environment} from '../../../../environments/environment.prod';
 import {TipotramiteService} from '../tipotramite.service';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
+import {routerTransition} from '../../../router.animations';
 
 @Component({
   selector: 'app-tipotramite-index',
   templateUrl: './tipotramite-index.component.html',
-  styleUrls: ['./tipotramite-index.component.scss']
+  styleUrls: ['./tipotramite-index.component.scss'],
+  animations: [routerTransition()]
 })
 export class TipotramiteIndexComponent implements OnInit {
     tipotramites: any = [];

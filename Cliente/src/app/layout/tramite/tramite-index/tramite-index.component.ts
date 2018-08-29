@@ -55,6 +55,7 @@ export class TramiteIndexComponent implements OnInit {
             });
     }
     getPages(last_page) {
+        this.pages = [];
         for (let i = 1; i <= last_page; i++ ) {
             this.pages.push(
                 {
