@@ -47,6 +47,7 @@ import { UsuarioCreateComponent } from './usuario/usuario-create/usuario-create.
 import { UsuarioEditComponent } from './usuario/usuario-edit/usuario-edit.component';
 import { UsuarioService} from './usuario/usuario.service';
 import { NgAutoCompleteModule} from 'ng-auto-complete';
+import {DndListModule} from 'ngx-drag-and-drop-lists';
 
 @NgModule({
     imports: [
@@ -60,6 +61,7 @@ import { NgAutoCompleteModule} from 'ng-auto-complete';
         NgbModalModule,
         NgbDropdownModule.forRoot(),
         NgxMaskModule.forRoot(),
+        DndListModule
     ],
     declarations: [
         LayoutComponent,

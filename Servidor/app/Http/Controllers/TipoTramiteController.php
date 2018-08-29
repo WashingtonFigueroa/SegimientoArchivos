@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Departamento;
+use App\Recorrido;
 use App\TipoTramite;
 
 class TipoTramiteController extends Controller
@@ -50,6 +51,69 @@ class TipoTramiteController extends Controller
                                     ->distinct('tipo_tramites.id')
                                     ->get();
         return response()->json($tipo_tramites, 200);
+    }
+
+    /*
+     * Recupera todos los tipos de tramties
+     * de un departamento
+     *
+     * */
+    public function get_tipo_tramites_departamento($departamento_id) {
+        return response()->json(Departamento::find($departamento_id)->tipoTramites()->get(), 200);
+    }
+
+    /*
+     * Recorridos de tipo de tramite
+     * y recorridos vacios con tipo_tramite_id y departamento_id
+     * */
+    public function recorridos_tipo_tramite($tipo_tramite_id) {
+        $recorridos = Recorrido::join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
+                                 ->where('recorridos.tipo_tramite_id', $tipo_tramite_id)
+                                 ->select(
+                                            'recorridos.tipo_tramite_id',
+                                            'recorridos.posicion',
+                                            'recorridos.tiempo_estimado',
+                                            'recorridos.observaciones',
+                                            'recorridos.departamento_id',
+                                            'departamentos.nombre'
+                                     )
+                                 ->orderBy('recorridos.posicion')
+                                 ->get();
+        $departamentos_recorrido = Recorrido::join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
+            ->where('recorridos.tipo_tramite_id', $tipo_tramite_id)
+            ->select(
+                'departamentos.id'
+            )
+            ->get();
+        $departamentos_id = [];
+        foreach ($departamentos_recorrido as $departamento_recorrido) {
+            array_push($departamentos_id, $departamento_recorrido->id);
+        }
+        $departamentos = Departamento::all()->except($departamentos_id);
+        $recorridos_vacio = [];
+        foreach ($departamentos as $departamento) {
+            array_push($recorridos_vacio, [
+                'tipo_tramite_id' => (int)$tipo_tramite_id,
+                'posicion' => 0,
+                'tiempo_estimado' => 0,
+                'observaciones' => '',
+                'departamento_id' => $departamento->id,
+                'nombre' => $departamento->nombre,
+            ]);
+            array_push($recorridos_vacio, [
+                'tipo_tramite_id' => (int)$tipo_tramite_id,
+                'posicion' => 0,
+                'tiempo_estimado' => 0,
+                'observaciones' => '',
+                'departamento_id' => $departamento->id,
+                'nombre' => $departamento->nombre,
+            ]);
+        }
+
+        return response()->json([
+            'recorridos' => $recorridos,
+            'recorridos_vacio' => $recorridos_vacio
+        ], 200);
     }
 
 }
