@@ -4,6 +4,7 @@ import {TipotramiteService} from '../../tipotramite/tipotramite.service';
 import {LoginService} from '../../../login.service';
 import {DepartamentoService} from '../../departamento/departamento.service';
 import {RecorridoService} from '../recorrido.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-recorrido-index',
@@ -24,7 +25,8 @@ export class RecorridoIndexComponent implements OnInit {
     constructor(protected tipoTramiteService: TipotramiteService,
                 protected loginService: LoginService,
                 protected departamentoService: DepartamentoService,
-                protected recorridoService: RecorridoService) {
+                protected recorridoService: RecorridoService,
+                protected toastr: ToastrService) {
         const departamento_id = this.loginService.getUsuario().departamento_id;
         this.tipoTramiteService.get_tipo_tramites_departamento(departamento_id)
             .subscribe(res => this.tipo_tramites = res);
@@ -53,7 +55,7 @@ export class RecorridoIndexComponent implements OnInit {
         });
         this.recorridoService.update_recorridos(this.tipo_tramite_id, {recorridos: this.recorridos[1]})
             .subscribe(res => {
-                console.log(res);
+                this.toastr.success('Recorrido actualizado exitosamente', 'Actualización de recorrido');
             });
     }
 
