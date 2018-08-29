@@ -8,8 +8,21 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-md-8">
-                    <form (submit)="update()" role="form" *ngIf="tramite !== null" [formGroup]="tramiteGroup">
+                <div class="col-md-8" *ngIf="tramite !== null">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="cliente">Cliente:</span>
+                        </div>
+                        <input type="text" class="form-control" disabled="true" [value]="tramite.cliente.nombres">
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="cliente_identificacion">Identificación {{ tramite.cliente.tipo_documento | uppercase }}:</span>
+                        </div>
+                        <input type="text" class="form-control" disabled="true" [value]="tramite.cliente.identificacion">
+                    </div>
+
+                    <form (submit)="update()" role="form" [formGroup]="tramiteGroup">
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="recorrido_label">Recorrido:</span>

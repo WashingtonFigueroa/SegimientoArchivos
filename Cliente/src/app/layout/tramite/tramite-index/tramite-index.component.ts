@@ -41,6 +41,9 @@ export class TramiteIndexComponent implements OnInit {
             this.next_page = res.next_page_url;
         });
     }
+    refresh() {
+        this.ngOnInit();
+    }
     buscar(search) {
         const request = {
           'search' : search,

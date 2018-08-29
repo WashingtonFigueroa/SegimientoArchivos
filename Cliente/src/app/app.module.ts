@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData} from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -13,6 +13,9 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 import {LoginService} from './login.service';
+import localeBo from '@angular/common/locales/es-BO';
+
+registerLocaleData(localeBo);
 
 export const createTranslateLoader = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,7 +41,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         BrowserAnimationsModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard, LoginService],
+    providers: [AuthGuard, LoginService, { provide: LOCALE_ID, useValue: 'es-BO' }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

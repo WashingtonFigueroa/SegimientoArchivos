@@ -42,7 +42,7 @@ class TramiteController extends Controller
     }
     public function show($id)
     {
-        return response()->json(Tramite::find($id), 200);
+        return response()->json(Tramite::with('cliente')->find($id), 200);
     }
     public function update($id)
     {
@@ -82,6 +82,7 @@ class TramiteController extends Controller
                             ->join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
                             ->where('recorridos.departamento_id', $departamento_id)
                             ->orWhere('tramites.permiso', 'publico')
+                            ->orderBy('tramites.permiso', 'desc')
                             ->orderBy('tramites.id', 'desc')
                             ->select('tramites.*', 'departamentos.nombre as departamento')
                             ->paginate(10);
@@ -99,6 +100,7 @@ class TramiteController extends Controller
                 $query->where('clientes.identificacion', 'like' , '%' . request()->input('search') . '%');
             })
             ->orderBy('tramites.id', 'desc')
+            ->orderBy('tramites.permiso', 'desc')
             ->select('tramites.*', 'departamentos.nombre as departamento')
             ->paginate(10);
         return response()->json($tramites, 200);

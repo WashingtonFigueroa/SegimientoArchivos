@@ -41,8 +41,8 @@
               <td> {{ cliente.nombres }}</td>
               <td> {{ cliente.telefono }}</td>
               <td> {{ cliente.celular }}</td>
-              <td> {{ cliente.correo }}</td>
-              <td align="center">
+              <td> {{cliente.correo}} </td>
+              <td class="controls">
                 <button (click)="edit(cliente.id)" type="button" class="btn btn-info">
                   <i class="fa fa-pencil-square" aria-hidden="true"></i>
                 </button>
