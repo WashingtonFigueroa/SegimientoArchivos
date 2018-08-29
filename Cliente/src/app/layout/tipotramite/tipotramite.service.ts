@@ -32,4 +32,10 @@ export class TipotramiteService {
     tipo_tramites_departamento(departamento_id) {
         return this.http.get(this.base + 'tipo_tramites_departamento/' + departamento_id);
     }
+    get_tipo_tramites_departamento(departamento_id) {
+        return this.http.get(`${environment.base}get_tipo_tramites_departamento/${departamento_id}`);
+    }
+    recorridos_tipo_tramite (tipo_tramite_id) {
+        return this.http.get(`${environment.base}recorridos_tipo_tramite/${tipo_tramite_id}`);
+    }
 }

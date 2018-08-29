@@ -28,8 +28,10 @@ Route::get('cantidad_estado_tramites/{departamento_id}', 'TramiteController@cant
 Route::resource('tipo_tramites', 'TipoTramiteController', ['except' => ['edit', 'create']]);
 Route::get('lista_tipo_tramites','TipoTramiteController@lista_tipo_tramites');
 Route::get('tipo_tramites_departamento/{departamento_id}', 'TipoTramiteController@tipo_tramites_departamento');
+Route::get('get_tipo_tramites_departamento/{departamento_id}', 'TipoTramiteController@get_tipo_tramites_departamento');
 Route::resource('recorridos', 'RecorridoController', ['except' => ['edit', 'create']]);
-
+Route::get('recorridos_tipo_tramite/{tipo_tramite_id}', 'TipoTramiteController@recorridos_tipo_tramite');
+Route::put('update_recorridos/{tipo_tramite_id}', 'RecorridoController@update_recorridos');
 Route::resource('clientes', 'ClienteController', ['except' => ['edit', 'create']]);
 Route::get('lista_clientes','ClienteController@lista_clientes');
 Route::get('ver_documento/{id}','ClienteController@ver_documento');

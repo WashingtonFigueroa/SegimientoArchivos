@@ -1,3 +1,80 @@
-<p>
-  recorrido-index works!
-</p>
+<div class="container-fluid" [@routerTransition]>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-header">
+<!--                    <button type="button" class="btn btn-primary">
+                        Recorridos&nbsp;&nbsp;
+                        <i class="fa fa-user"></i> &nbsp;
+                    </button>-->
+                    &nbsp;&nbsp;&nbsp; Recorridos
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12 form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="tipo_tramite_label">Tipo de Tramite:</span>
+                </div>
+                <select (change)="recorridos_tipo_tramite(tipo_tramite_id)" [(ngModel)]="tipo_tramite_id" class="form-control">
+                    <option [value]="tipo_tramite.id" *ngFor="let tipo_tramite of tipo_tramites">{{ tipo_tramite.nombre }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"
+                 [dndList]
+                 [dndModel]="recorridos[0]">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">Departamentos</a>
+                    <div *ngFor="let item of recorridos[0]; let i = index"
+                         class="list-group-item"
+                         [dndType]="'item'"
+                         (dndMoved)="removeItem(item, recorridos[0])"
+                         [dndDraggable]
+                         [dndObject]="item">
+                        <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
+                    </div>
+                    <a href="#" class="list-group-item list-group-item-action active justify-content-between">
+                        Activos <span class="badge badge-light badge-pill">{{ recorridos[0].length }}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8"
+                 [dndList]
+                 [dndModel]="recorridos[1]">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">Recorridos</a>
+                    <div *ngFor="let item of recorridos[1]; let i = index"
+                         class="list-group-item"
+                         [dndType]="'item'"
+                         (dndMoved)="removeItem(item, recorridos[1])"
+                         [dndDraggable]
+                         [dndObject]="item">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="hidden" class="form-control" disabled="true" [(ngModel)]="item.departamento_id" [value]="item.departamento_id">
+                                <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Tiempo estimado" [(ngModel)]="item.tiempo_estimado" [value]="item.tiempo_estimado">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" placeholder="Observaciones" [(ngModel)]="item.observaciones" [value]="item.observaciones">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="list-group-item list-group-item-action active justify-content-between">
+                        Activos <span class="badge badge-light badge-pill">{{ recorridos[1].length}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-success" (click)="update()">Actualizar recorrido</button>
+            </div>
+        </div>
+    </div>
