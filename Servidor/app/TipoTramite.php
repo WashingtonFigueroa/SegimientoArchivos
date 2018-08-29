@@ -9,7 +9,7 @@ class TipoTramite extends Model
 {
     use SoftDeletes;
     protected $table = 'tipo_tramites';
-    protected $fillable = ['nombre', 'descripcion'];
+    protected $fillable = ['departamento_id', 'nombre', 'descripcion'];
     protected $dates = ['deleted_at'];
     public function departamento() {
         return $this->belongsTo('App\Departamento');

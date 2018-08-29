@@ -41,6 +41,9 @@ export class TramiteIndexComponent implements OnInit {
             this.next_page = res.next_page_url;
         });
     }
+    refresh() {
+        this.ngOnInit();
+    }
     buscar(search) {
         const request = {
           'search' : search,
@@ -52,10 +55,11 @@ export class TramiteIndexComponent implements OnInit {
             });
     }
     getPages(last_page) {
+        this.pages = [];
         for (let i = 1; i <= last_page; i++ ) {
             this.pages.push(
                 {
-                    url: this.environment.base + 'tramites?page=' + i ,
+                    url: this.environment.base + 'tramites_departamento/' + this.departamento_id + '?page=' + i ,
                     item: i
                 }
             );

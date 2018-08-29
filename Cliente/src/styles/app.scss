@@ -25,11 +25,35 @@
     cursor: pointer;
     z-index: 1000;
 }
-.permiso {
+.permiso, .radio{
     box-sizing: border-box;
     margin: 1em;
     transform: scale(1.5);
 }
+.radio-content {
+    display: inline-block;
+    width: 100px;
+}
+.list-group-item > li {
+    list-style-type: none;
+}
 .link {
     cursor: pointer;
+}
+.publico {
+    background-color: #1d68a7;
+    color: white;
+}
+.controls {
+    min-width: 150px;
+    text-align: center;
+}
+.finalizado{
+    color: #47c160;
+}
+.pendiente{
+    color: #e63e5c;
+}
+.proceso{
+    color: #1b1e21;
 }

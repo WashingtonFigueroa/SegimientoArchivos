@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Departamento;
 use App\TipoTramite;
 
 class TipoTramiteController extends Controller
@@ -15,10 +16,9 @@ class TipoTramiteController extends Controller
     {
         return response()->json(TipoTramite::orderBy('nombre')->get(), 200);
     }
-    public function store(Request $request)
+    public function store()
     {
-        var_dump($request);
-       // return response()->json(TipoTramite::create(request()->all()), 201);
+       return response()->json(TipoTramite::create(request()->all()), 201);
     }
     public function show($id)
     {
@@ -36,4 +36,20 @@ class TipoTramiteController extends Controller
         $tipo_tramite->delete();
         return response()->json(['exito' => 'Tipo de Tramite ' . $tipo_tramite->nombre . ' eliminado exitosamente'], 200);
     }
+    /*
+     * tipo de tramites de cada departamento
+     * cuyos recorridos comienzan con el departamento
+     * que los crea
+     * */
+    public function tipo_tramites_departamento($departamento_id) {
+        $tipo_tramites = TipoTramite::join('recorridos', 'recorridos.tipo_tramite_id', 'tipo_tramites.id')
+                                    ->where('tipo_tramites.departamento_id', $departamento_id)
+                                    ->where('recorridos.posicion', 1)
+                                    ->where('recorridos.departamento_id', $departamento_id)
+                                    ->select('tipo_tramites.*')
+                                    ->distinct('tipo_tramites.id')
+                                    ->get();
+        return response()->json($tipo_tramites, 200);
+    }
+
 }

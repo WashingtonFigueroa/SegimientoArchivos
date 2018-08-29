@@ -41,6 +41,7 @@ export class TramiteEditComponent implements OnInit {
         const permiso = tramite.permiso === 'publico' ? true : false;
         this.tramiteGroup = this.fb.group({
             'recorrido_id': new FormControl(tramite.recorrido_id, [Validators.required]),
+            'estado': new FormControl(tramite.estado, [Validators.required]),
             'observacion': new FormControl(tramite.observacion, [Validators.required]),
             'permiso' : new FormControl( permiso,[Validators.required]),
         });
@@ -48,6 +49,7 @@ export class TramiteEditComponent implements OnInit {
 
     update() {
         this.tramite.recorrido_id = this.tramiteGroup.value.recorrido_id;
+        this.tramite.estado = this.tramiteGroup.value.estado;
         this.tramite.observacion = this.tramiteGroup.value.observacion;
         this.tramite.permiso = this.tramiteGroup.value.permiso ? 'publico' : 'recorrido';
         this.tramiteService.update(this.tramite, this.idtramite)
