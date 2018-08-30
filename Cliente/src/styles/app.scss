@@ -60,3 +60,28 @@
 li {
     list-style-type: none;
 }
+.md-10 {
+    display: inline-block;
+    width: 10%;
+    margin: 0 .5em;
+    box-sizing: border-box;
+}
+.md-30 {
+    display: inline-block;
+    width: 30%;
+    margin: 0 .5em;
+    box-sizing: border-box;
+}
+.md-50 {
+    display: inline-block;
+    width: 50%;
+    margin: 0 .5em;
+    box-sizing: border-box;
+}
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+.space {
+    flex: 1 1 auto;
+}

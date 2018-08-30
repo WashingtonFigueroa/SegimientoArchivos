@@ -1,59 +1,56 @@
 <div class="container-fluid" [@routerTransition]>
-        <h3>Recorridos</h3>
-        <br>
-        <div class="row">
-            <div class="dndPlaceholder col-md-12" #placeholder></div>
-            <div class="col-md-12 form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="tipo_tramite_label">Tipo de Tramite:</span>
-                </div>
-                <select (change)="recorridos_tipo_tramite(tipo_tramite_id)" [(ngModel)]="tipo_tramite_id" class="form-control">
-                    <option [value]="tipo_tramite.id" *ngFor="let tipo_tramite of tipo_tramites">{{ tipo_tramite.nombre }}</option>
-                </select>
+    <h4>Recorridos</h4>
+    <div class="row">
+        <div class="dndPlaceholder col-md-12" #placeholder></div>
+        <div class="col-md-6 form-group input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="tipo_tramite_label">Tipo de Tramite:</span>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4"
-                 [dndList]
-                 [dndPlaceholder]="placeholder"
-                 [dndModel]="recorridos[0]">
-                    <div *ngFor="let item of recorridos[0]; let i = index"
-                         class="col-md-12"
-                         [dndType]="'item'"
-                         (dndMoved)="removeItem(item, recorridos[0])"
-                         [dndDraggable]
-                         [dndObject]="item">
-                        <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
-                    </div>
-                    <a href="#" class="list-group-item list-group-item-action active justify-content-between">
-                        Activos <span class="badge badge-light badge-pill">{{ recorridos[0].length }}</span>
-                    </a>
-            </div>
-            <div class="col-md-8"
-                 [dndList]
-                 [dndPlaceholder]="placeholder"
-                 [dndModel]="recorridos[1]">
-                    <div *ngFor="let item of recorridos[1]; let i = index"
-                         class="col-md-12"
-                         [dndType]="'item'"
-                         (dndMoved)="removeItem(item, recorridos[1])"
-                         [dndDraggable]
-                         [dndObject]="item">
-
-                        <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
-                        <input type="hidden" disabled="true" [(ngModel)]="item.departamento_id" [value]="item.departamento_id">
-                        <input type="text" placeholder="Tiempo estimado" [(ngModel)]="item.tiempo_estimado" [value]="item.tiempo_estimado">
-                        <input type="text" placeholder="Observaciones" [(ngModel)]="item.observaciones" [value]="item.observaciones">
-                    </div>
-<!--                    <a href="#" class="list-group-item list-group-item-action active justify-content-between">
-                        Activos <span class="badge badge-light badge-pill">{{ recorridos[1].length}}</span>
-                    </a>-->
-<!--                </div>-->
-            </div>
-            <hr>
-        <div class="row">
-            <div class="col-md-12 text-right">
-                <button class="btn btn-success" (click)="update()">Actualizar recorrido</button>
-            </div>
+            <select (change)="recorridos_tipo_tramite(tipo_tramite_id)" [(ngModel)]="tipo_tramite_id" class="form-control">
+                <option [value]="tipo_tramite.id" *ngFor="let tipo_tramite of tipo_tramites">{{ tipo_tramite.nombre }}</option>
+            </select>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-4"
+             [dndList]
+             [dndPlaceholder]="placeholder"
+             [dndModel]="recorridos[0]">
+                <a href="#" class="list-group-item list-group-item-action active justify-content-between">
+                    <strong>{{ recorridos[0].length }} </strong> Departamentos
+                </a>
+                <div *ngFor="let item of recorridos[0]; let i = index"
+                     class="col-md-12"
+                     [dndType]="'item'"
+                     (dndMoved)="removeItem(item, recorridos[0])"
+                     [dndDraggable]
+                     [dndObject]="item">
+                    <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
+                </div>
+        </div>
+        <div class="col-md-8"
+             [dndList]
+             [dndPlaceholder]="placeholder"
+             [dndModel]="recorridos[1]">
+                <div class="flex list-group-item list-group-item-action active justify-content-between text-right">
+                    <strong>{{ recorridos[1].length }} </strong> &nbsp; Recorridos
+                    <span class="space"></span>
+                    <button class="btn btn-sm btn-danger" (click)="update()">Actualizar recorrido</button>
+                </div>
+                <div *ngFor="let item of recorridos[1]; let i = index"
+                     class="col-md-12"
+                     [dndType]="'item'"
+                     (dndMoved)="removeItem(item, recorridos[1])"
+                     [dndDraggable]
+                     [dndObject]="item">
+
+                    <div class="md-30">
+                        <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
+                        <input type="hidden" disabled="true" [(ngModel)]="item.departamento_id" [value]="item.departamento_id">
+                    </div>
+                    <input type="text" class="form-control md-10" placeholder="Horas" [(ngModel)]="item.tiempo_estimado" [value]="item.tiempo_estimado">
+                    <input type="text" class="form-control md-50" placeholder="Observaciones" [(ngModel)]="item.observaciones" [value]="item.observaciones">
+                </div>
+        </div>
+    </div>
+</div>
