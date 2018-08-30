@@ -104,7 +104,8 @@ import {DndListModule} from 'ngx-drag-and-drop-lists';
         TramiteService,
         ClienteService,
         RespaldoService,
-        RecorridoService
+        RecorridoService,
+
     ]
 })
 export class LayoutModule {}

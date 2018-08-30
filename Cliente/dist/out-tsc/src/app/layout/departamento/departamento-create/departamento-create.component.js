@@ -38,7 +38,7 @@ var DepartamentoCreateComponent = /** @class */ (function () {
             .subscribe(function (res) {
             _this.departamentoGroup.reset();
             _this.router.navigate(['departamento']);
-            _this.toastr.success('El departamento ' + res.nombre + ' fue creado exitosament', 'Registro exitoso');
+            _this.toastr.success('El departamento ' + res.nombre + ' fue creado exitosamente', 'Registro exitoso');
         });
     };
     DepartamentoCreateComponent = __decorate([

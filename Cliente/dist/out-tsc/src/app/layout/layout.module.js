@@ -54,6 +54,7 @@ var usuario_create_component_1 = require("./usuario/usuario-create/usuario-creat
 var usuario_edit_component_1 = require("./usuario/usuario-edit/usuario-edit.component");
 var usuario_service_1 = require("./usuario/usuario.service");
 var ng_auto_complete_1 = require("ng-auto-complete");
+var ngx_drag_and_drop_lists_1 = require("ngx-drag-and-drop-lists");
 var LayoutModule = /** @class */ (function () {
     function LayoutModule() {
     }
@@ -70,6 +71,7 @@ var LayoutModule = /** @class */ (function () {
                 ng_bootstrap_1.NgbModalModule,
                 ng_bootstrap_1.NgbDropdownModule.forRoot(),
                 ngx_mask_1.NgxMaskModule.forRoot(),
+                ngx_drag_and_drop_lists_1.DndListModule
             ],
             declarations: [
                 layout_component_1.LayoutComponent,

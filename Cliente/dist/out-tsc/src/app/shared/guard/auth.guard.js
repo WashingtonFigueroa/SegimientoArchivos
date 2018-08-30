@@ -11,20 +11,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var login_service_1 = require("../../login.service");
 var AuthGuard = /** @class */ (function () {
-    function AuthGuard(router) {
+    function AuthGuard(router, loginService) {
         this.router = router;
+        this.loginService = loginService;
     }
-    AuthGuard.prototype.canActivate = function () {
-        if (localStorage.getItem('fileTrackingToken')) {
-            return true;
+    AuthGuard.prototype.canActivate = function (next, state) {
+        var privilegios = JSON.parse(localStorage.getItem('fileTrackingPrivilegios'));
+        if (localStorage.getItem('token')) {
+            if (state.url === '/dashboard') {
+                return true;
+            }
+            if (privilegios !== null) {
+                for (var i = 0; i < privilegios.length; i++) {
+                    if ('/' + privilegios[i].ruta + '/listar' === state.url) {
+                        return privilegios[i].activo === 1 ? true : false;
+                    }
+                }
+            }
         }
         this.router.navigate(['/login']);
         return false;
     };
     AuthGuard = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [router_1.Router])
+        __metadata("design:paramtypes", [router_1.Router,
+            login_service_1.LoginService])
     ], AuthGuard);
     return AuthGuard;
 }());

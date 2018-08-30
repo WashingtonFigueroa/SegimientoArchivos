@@ -41,6 +41,12 @@ var TipotramiteService = /** @class */ (function () {
     TipotramiteService.prototype.tipo_tramites_departamento = function (departamento_id) {
         return this.http.get(this.base + 'tipo_tramites_departamento/' + departamento_id);
     };
+    TipotramiteService.prototype.get_tipo_tramites_departamento = function (departamento_id) {
+        return this.http.get(environment_prod_1.environment.base + "get_tipo_tramites_departamento/" + departamento_id);
+    };
+    TipotramiteService.prototype.recorridos_tipo_tramite = function (tipo_tramite_id) {
+        return this.http.get(environment_prod_1.environment.base + "recorridos_tipo_tramite/" + tipo_tramite_id);
+    };
     TipotramiteService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

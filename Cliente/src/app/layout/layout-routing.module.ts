@@ -27,6 +27,7 @@ import {UsuarioComponent} from './usuario/usuario.component';
 import {UsuarioIndexComponent} from './usuario/usuario-index/usuario-index.component';
 import {UsuarioCreateComponent} from './usuario/usuario-create/usuario-create.component';
 import {UsuarioEditComponent} from './usuario/usuario-edit/usuario-edit.component';
+import {AuthGuard} from "../shared/guard";
 
 const routes: Routes = [
     {
@@ -37,6 +38,7 @@ const routes: Routes = [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             {   path: 'cliente',
                 component: ClienteComponent,
+                canActivate:[AuthGuard],
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
                     { path: 'listar', component: ClienteIndexComponent},
                     { path: 'crear', component: ClienteCreateComponent},
@@ -44,6 +46,7 @@ const routes: Routes = [
             },
             {   path: 'tipo_tramite',
                 component: TipotramiteComponent,
+                canActivate:[AuthGuard],
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
                     { path: 'listar', component: TipotramiteIndexComponent},
                     { path: 'crear', component: TipotramiteCreateComponent},
@@ -51,6 +54,7 @@ const routes: Routes = [
             },
             {   path: 'tramite',
                 component: TramiteComponent,
+                canActivate:[AuthGuard],
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
                     { path: 'listar', component: TramiteIndexComponent},
                     { path: 'crear', component: TramiteCreateComponent},
@@ -58,6 +62,7 @@ const routes: Routes = [
             },
             {   path: 'usuario',
                 component: UsuarioComponent,
+                canActivate:[AuthGuard],
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
                     { path: 'listar', component: UsuarioIndexComponent},
                     { path: 'crear', component: UsuarioCreateComponent},
@@ -65,6 +70,7 @@ const routes: Routes = [
             },
             {   path: 'departamento',
                 component: DepartamentoComponent,
+                canActivate:[AuthGuard],
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
                     { path: 'listar', component: DepartamentoIndexComponent},
                     { path: 'crear', component: DepartamentoCreateComponent},
@@ -72,6 +78,7 @@ const routes: Routes = [
             },
             {   path: 'privilegio',
                 component: PrivilegioComponent,
+                canActivate:[AuthGuard],
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
                     { path: 'listar', component: PrivilegioIndexComponent},
                     { path: 'crear', component: PrivilegioCreateComponent},
@@ -79,16 +86,11 @@ const routes: Routes = [
             },
             {   path: 'recorrido',
                 component: RecorridoComponent,
+                canActivate:[AuthGuard],
                 children: [{ path: '', redirectTo: 'listar', pathMatch: 'full' },
                     { path: 'listar', component: RecorridoIndexComponent}]
             },
-            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-            { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
-            { path: 'forms', loadChildren: './form/form.module#FormModule' },
-            { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
-            { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
-            { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
-            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' }
+            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' }
         ]
     }
 ];

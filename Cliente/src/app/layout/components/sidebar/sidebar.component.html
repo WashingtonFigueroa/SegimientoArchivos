@@ -7,16 +7,12 @@
             <span>{{ 'Dashboard' | translate }}</span>
         </a>
         <a routerLink="/departamento" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-sitemap"></i>
+            <i class="fa fa-sitemap"></i>&nbsp;
             <span>{{ 'Department' | translate }}</span>
         </a>
         <a routerLink="/usuario" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-user"></i>
+            <i class="fa fa-fw fa-user"></i>&nbsp;
             <span>{{ 'User' | translate }}</span>
-        </a>
-        <a routerLink="/cliente" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-users"></i>&nbsp;
-            <span>{{ 'Client' | translate }}</span>
         </a>
         <a routerLink="/tipo_tramite" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-file"></i>&nbsp;
@@ -25,6 +21,10 @@
         <a routerLink="/recorrido" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-calendar-check-o"></i>&nbsp;
             <span>{{ 'Route' | translate }}</span>
+        </a>
+        <a routerLink="/cliente" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-users"></i>&nbsp;
+            <span>{{ 'Client' | translate }}</span>
         </a>
         <a routerLink="/tramite" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-file-archive-o"></i>&nbsp;
@@ -35,8 +35,7 @@
             <span>{{ 'Charts' | translate }}</span>
         </a>
         <div class="header-fields">
-            <a (click)="rltAndLtr()" class="list-group-item">
-                <span><i class="fa fa-arrows-h"></i>&nbsp; RTL/LTR</span>
+            <a class="list-group-item">
             </a>
             <div class="nested-menu">
                 <a class="list-group-item" (click)="addExpandClass('languages')">
@@ -50,66 +49,35 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fr')">
-                                {{ 'French' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('ur')">
-                                {{ 'Urdu' | translate }}
-                            </a>
-                        </li>
-                        <li>
                             <a href="javascript:void(0)" (click)="changeLang('es')">
                                 {{ 'Spanish' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('it')">
-                                {{ 'Italian' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('fa')">
-                                {{ 'Farsi' | translate }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" (click)="changeLang('de')">
-                                {{ 'German' | translate }}
                             </a>
                         </li>
                     </ul>
                 </li>
             </div>
             <div class="nested-menu">
+
                 <a class="list-group-item" (click)="addExpandClass('profile')">
-                    <span><i class="fa fa-user"></i>&nbsp; John Smith</span>
+                    <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }} <b class="caret"></b>
                 </a>
                 <li class="nested" [class.expand]="showMenu === 'profile'">
                     <ul class="submenu">
                         <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-user"></i> {{ 'Profile' | translate }}</span>
+                            <a class="dropdown-item" href="javascript:void(0)" [routerLink]="['/privilegio']" [routerLinkActive]="['router-link-active']" >
+                                <i class="fa fa-fw fa-gear"></i>
+                                {{ 'Privileges' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-envelope"></i> {{ 'Inbox' | translate }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)">
-                                <span><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/login']" (click)="onLoggedout()">
+                            <a class="dropdown-item link"
+                               (click)="onLoggedout()">
                                 <span><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</span>
                             </a>
                         </li>
                     </ul>
                 </li>
+
             </div>
         </div>
     </div>

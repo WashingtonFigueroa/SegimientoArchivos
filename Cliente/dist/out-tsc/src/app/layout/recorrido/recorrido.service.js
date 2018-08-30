@@ -10,14 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/common/http");
+var environment_prod_1 = require("../../../environments/environment.prod");
 var RecorridoService = /** @class */ (function () {
-    function RecorridoService() {
+    function RecorridoService(http) {
+        this.http = http;
     }
+    RecorridoService.prototype.update_recorridos = function (tipo_tramite_id, recorridos) {
+        return this.http.put(environment_prod_1.environment.base + "update_recorridos/" + tipo_tramite_id, recorridos);
+    };
     RecorridoService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [http_1.HttpClient])
     ], RecorridoService);
     return RecorridoService;
 }());

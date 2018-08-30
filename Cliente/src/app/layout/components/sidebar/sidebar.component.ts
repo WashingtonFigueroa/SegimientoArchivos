@@ -74,6 +74,9 @@ export class SidebarComponent {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('fileTrackingToken');
+        localStorage.removeItem('fileTrackingUsuario');
+        localStorage.removeItem('fileTrackingPrivilegios');
+        this.router.navigate(['/login']);
     }
 }

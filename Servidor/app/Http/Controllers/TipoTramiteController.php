@@ -47,6 +47,7 @@ class TipoTramiteController extends Controller
                                     ->where('tipo_tramites.departamento_id', $departamento_id)
                                     ->where('recorridos.posicion', 1)
                                     ->where('recorridos.departamento_id', $departamento_id)
+
                                     ->select('tipo_tramites.*')
                                     ->distinct('tipo_tramites.id')
                                     ->get();
