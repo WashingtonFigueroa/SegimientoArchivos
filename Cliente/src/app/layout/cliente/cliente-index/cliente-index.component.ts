@@ -32,7 +32,6 @@ export class ClienteIndexComponent implements OnInit {
     ngOnInit() {
         this.clienteService.index().subscribe((res: any) => {
             this.clientes = res.data;
-            this.clientesBK = res.data;
             this.getPages(res.last_page);
             this.prev_page = res.prev_page_url;
             this.next_page = res.next_page_url;
@@ -40,14 +39,17 @@ export class ClienteIndexComponent implements OnInit {
     }
 
     buscar(search) {
-        this.clientes = this.clientesBK.filter((cliente: any) => {
-            return cliente.tipo_documento.toLowerCase().indexOf(search) > -1 ||
-                cliente.identificacion.toLowerCase().indexOf(search) > -1 ||
-                cliente.nombres.toLowerCase().indexOf(search) > -1;
-        });
+        this.clienteService.buscar_clientes({search: search})
+            .subscribe((res: any) => {
+                this.clientes = res.data;
+                this.getPages(res.last_page);
+                this.prev_page = res.prev_page_url;
+                this.next_page = res.next_page_url;
+            });
     }
 
     getPages(last_page) {
+        this.pages = [];
         for (let i = 1; i <= last_page; i++ ) {
             this.pages.push(
                 {

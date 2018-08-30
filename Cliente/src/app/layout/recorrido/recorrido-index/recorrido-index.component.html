@@ -1,19 +1,8 @@
 <div class="container-fluid" [@routerTransition]>
-    <div class="container-fluid">
+        <h3>Recorridos</h3>
         <br>
         <div class="row">
-            <div class="col-md-12">
-                <div class="card-header">
-<!--                    <button type="button" class="btn btn-primary">
-                        Recorridos&nbsp;&nbsp;
-                        <i class="fa fa-user"></i> &nbsp;
-                    </button>-->
-                    &nbsp;&nbsp;&nbsp; Recorridos
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
+            <div class="dndPlaceholder col-md-12" #placeholder></div>
             <div class="col-md-12 form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="tipo_tramite_label">Tipo de Tramite:</span>
@@ -26,11 +15,10 @@
         <div class="row">
             <div class="col-md-4"
                  [dndList]
+                 [dndPlaceholder]="placeholder"
                  [dndModel]="recorridos[0]">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">Departamentos</a>
                     <div *ngFor="let item of recorridos[0]; let i = index"
-                         class="list-group-item"
+                         class="col-md-12"
                          [dndType]="'item'"
                          (dndMoved)="removeItem(item, recorridos[0])"
                          [dndDraggable]
@@ -40,42 +28,32 @@
                     <a href="#" class="list-group-item list-group-item-action active justify-content-between">
                         Activos <span class="badge badge-light badge-pill">{{ recorridos[0].length }}</span>
                     </a>
-                </div>
             </div>
             <div class="col-md-8"
                  [dndList]
+                 [dndPlaceholder]="placeholder"
                  [dndModel]="recorridos[1]">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active">Recorridos</a>
                     <div *ngFor="let item of recorridos[1]; let i = index"
-                         class="list-group-item"
+                         class="col-md-12"
                          [dndType]="'item'"
                          (dndMoved)="removeItem(item, recorridos[1])"
                          [dndDraggable]
                          [dndObject]="item">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <input type="hidden" class="form-control" disabled="true" [(ngModel)]="item.departamento_id" [value]="item.departamento_id">
-                                <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Tiempo estimado" [(ngModel)]="item.tiempo_estimado" [value]="item.tiempo_estimado">
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Observaciones" [(ngModel)]="item.observaciones" [value]="item.observaciones">
-                            </div>
-                        </div>
+
+                        <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
+                        <input type="hidden" disabled="true" [(ngModel)]="item.departamento_id" [value]="item.departamento_id">
+                        <input type="text" placeholder="Tiempo estimado" [(ngModel)]="item.tiempo_estimado" [value]="item.tiempo_estimado">
+                        <input type="text" placeholder="Observaciones" [(ngModel)]="item.observaciones" [value]="item.observaciones">
                     </div>
-                    <a href="#" class="list-group-item list-group-item-action active justify-content-between">
+<!--                    <a href="#" class="list-group-item list-group-item-action active justify-content-between">
                         Activos <span class="badge badge-light badge-pill">{{ recorridos[1].length}}</span>
-                    </a>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <button class="btn btn-success" (click)="update()">Actualizar recorrido</button>
-                    </div>
-                </div>
+                    </a>-->
+<!--                </div>-->
+            </div>
+            <hr>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-success" (click)="update()">Actualizar recorrido</button>
             </div>
         </div>
     </div>

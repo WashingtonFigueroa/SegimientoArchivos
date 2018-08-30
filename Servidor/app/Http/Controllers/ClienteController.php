@@ -64,4 +64,12 @@ class ClienteController extends Controller
         $cliente->delete();
         return response()->json(['exito' => 'Cliente ' . $cliente->nombres . ' eliminado exitosamente'], 200);
     }
+
+    public function buscar_clientes() {
+        $search = request()->input('search');
+        $clientes = Cliente::where('identificacion', 'like', '%'. $search . '%')
+                            ->orWhere('nombres', 'like', '%'. $search . '%')
+                            ->paginate(10);
+        return response()->json($clientes, 200);
+    }
 }

@@ -35,7 +35,7 @@ Route::put('update_recorridos/{tipo_tramite_id}', 'RecorridoController@update_re
 Route::resource('clientes', 'ClienteController', ['except' => ['edit', 'create']]);
 Route::get('lista_clientes','ClienteController@lista_clientes');
 Route::get('ver_documento/{id}','ClienteController@ver_documento');
-
+Route::post('buscar_clientes','ClienteController@buscar_clientes');
 
 
 Route::resource('tramites', 'TramiteController', ['except' => ['edit', 'create']]);

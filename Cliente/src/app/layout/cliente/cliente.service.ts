@@ -38,4 +38,7 @@ export class ClienteService {
             }
         });
     }
+    buscar_clientes(search) {
+      return this.http.post(`${environment.base}buscar_clientes`, search);
+    }
 }

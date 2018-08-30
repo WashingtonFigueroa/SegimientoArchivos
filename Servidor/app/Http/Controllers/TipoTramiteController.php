@@ -68,8 +68,10 @@ class TipoTramiteController extends Controller
      * y recorridos vacios con tipo_tramite_id y departamento_id
      * */
     public function recorridos_tipo_tramite($tipo_tramite_id) {
+        $administrador_id = Departamento::where('nombre', 'Administrador')->first()->id;
         $recorridos = Recorrido::join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
-                                 ->where('recorridos.tipo_tramite_id', $tipo_tramite_id)
+                                 ->where('recorridos.tipo_tramite_id', '=', $tipo_tramite_id)
+                                 ->where('recorridos.departamento_id', '<>', $administrador_id)
                                  ->select(
                                             'recorridos.tipo_tramite_id',
                                             'recorridos.posicion',
@@ -81,7 +83,8 @@ class TipoTramiteController extends Controller
                                  ->orderBy('recorridos.posicion')
                                  ->get();
         $departamentos_recorrido = Recorrido::join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
-            ->where('recorridos.tipo_tramite_id', $tipo_tramite_id)
+            ->where('recorridos.tipo_tramite_id', '=', $tipo_tramite_id)
+            ->where('recorridos.departamento_id', '<>', $administrador_id)
             ->select(
                 'departamentos.id'
             )
@@ -90,24 +93,25 @@ class TipoTramiteController extends Controller
         foreach ($departamentos_recorrido as $departamento_recorrido) {
             array_push($departamentos_id, $departamento_recorrido->id);
         }
+        array_push($departamentos_id, $administrador_id);
         $departamentos = Departamento::all()->except($departamentos_id);
         $recorridos_vacio = [];
         foreach ($departamentos as $departamento) {
             array_push($recorridos_vacio, [
+                'nombre' => $departamento->nombre,
                 'tipo_tramite_id' => (int)$tipo_tramite_id,
                 'posicion' => 0,
                 'tiempo_estimado' => 0,
-                'observaciones' => '',
+                'observaciones' => 'obs1',
                 'departamento_id' => $departamento->id,
-                'nombre' => $departamento->nombre,
             ]);
             array_push($recorridos_vacio, [
+                'nombre' => $departamento->nombre,
                 'tipo_tramite_id' => (int)$tipo_tramite_id,
                 'posicion' => 0,
                 'tiempo_estimado' => 0,
-                'observaciones' => '',
+                'observaciones' => 'obs2',
                 'departamento_id' => $departamento->id,
-                'nombre' => $departamento->nombre,
             ]);
         }
 
