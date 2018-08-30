@@ -29,6 +29,8 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         $usuario->departamento_id = request()->input('departamento_id');
         $usuario->nombres = request()->input('nombres');
+        $usuario->cuenta = request()->input('cuenta');
+        $usuario->password = Hash::make(request()->input('password'));
         $usuario->save();
         return response()->json($usuario, 200);
     }
