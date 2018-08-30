@@ -37,4 +37,13 @@ class UsuarioController extends Controller
         $usuario->delete();
         return response()->json(['exito' => 'El usuario ' . $usuario->nombres . ' fue eliminado exitosamente'], 200);
     }
+    public function buscar_usuarios() {
+        $search = request()->input('search');
+        $usuarios = Usuario::with('departamento')
+            ->where('departamento_id', '!=', 1)
+            ->where('nombres', 'like', '%'. $search . '%')
+            ->paginate(10);
+        return response()->json($usuarios, 200);
+    }
+
 }

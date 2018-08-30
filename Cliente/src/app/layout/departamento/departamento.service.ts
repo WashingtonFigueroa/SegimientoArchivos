@@ -32,4 +32,7 @@ export class DepartamentoService {
     listaPrivilegios(departamento_id) {
         return this.http.get(this.base + 'listaPrivilegios/' + departamento_id);
     }
+    buscar_departamentos(search) {
+        return this.http.post(`${environment.base}buscar_departamentos`, search);
+    }
 }

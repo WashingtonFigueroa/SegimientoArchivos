@@ -35,12 +35,16 @@ export class TipotramiteIndexComponent implements OnInit {
         });
     }
     buscar(search) {
-        this.tipotramites = this.tipotramitesBK.filter((tipo: any) => {
-            return tipo.departamento.nombre.toLowerCase().indexOf(search) > -1 ||
-                   tipo.nombre.toLowerCase().indexOf(search) > -1;
-        });
+        this.tipotramiteService.buscar_tipotramites({search: search})
+            .subscribe((res: any) => {
+                this.tipotramites = res.data;
+                this.getPages(res.last_page);
+                this.prev_page = res.prev_page_url;
+                this.next_page = res.next_page_url;
+            });
     }
     getPages(last_page) {
+        this.pages = [];
         for (let i = 1; i <= last_page; i++ ) {
             this.pages.push(
                 {

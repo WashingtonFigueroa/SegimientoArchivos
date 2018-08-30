@@ -38,4 +38,7 @@ export class TipotramiteService {
     recorridos_tipo_tramite (tipo_tramite_id) {
         return this.http.get(`${environment.base}recorridos_tipo_tramite/${tipo_tramite_id}`);
     }
+    buscar_tipotramites(search) {
+        return this.http.post(`${environment.base}buscar_tipotramites`, search);
+    }
 }

@@ -14,12 +14,10 @@ import {routerTransition} from '../../../router.animations';
 
 export class ClienteIndexComponent implements OnInit {
     clientes: any = [];
-    clientesBK: any = [];
     index: number = null;
     idcliente: number = null;
     closeResult: string;
     search = '';
-
     pages: any = [];
     prev_page: any = null;
     next_page: any = null;

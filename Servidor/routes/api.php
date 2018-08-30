@@ -29,9 +29,12 @@ Route::resource('tipo_tramites', 'TipoTramiteController', ['except' => ['edit', 
 Route::get('lista_tipo_tramites','TipoTramiteController@lista_tipo_tramites');
 Route::get('tipo_tramites_departamento/{departamento_id}', 'TipoTramiteController@tipo_tramites_departamento');
 Route::get('get_tipo_tramites_departamento/{departamento_id}', 'TipoTramiteController@get_tipo_tramites_departamento');
+Route::post('buscar_tipotramites','TipoTramiteController@buscar_tipotramites');
+
 Route::resource('recorridos', 'RecorridoController', ['except' => ['edit', 'create']]);
 Route::get('recorridos_tipo_tramite/{tipo_tramite_id}', 'TipoTramiteController@recorridos_tipo_tramite');
 Route::put('update_recorridos/{tipo_tramite_id}', 'RecorridoController@update_recorridos');
+
 Route::resource('clientes', 'ClienteController', ['except' => ['edit', 'create']]);
 Route::get('lista_clientes','ClienteController@lista_clientes');
 Route::get('ver_documento/{id}','ClienteController@ver_documento');
@@ -44,11 +47,14 @@ Route::get('recorridos_tramite/{tramite_id}', 'TramiteController@recorridos_tram
 Route::resource('respaldos', 'RespaldoController', ['except' => ['edit', 'create']]);
 
 Route::resource('usuarios', 'UsuarioController', ['except' => ['edit', 'create']]);
+Route::post('buscar_usuarios','UsuarioController@buscar_usuarios');
 
 Route::resource('privilegios', 'PrivilegioController', ['except' => ['edit', 'create']]);
+Route::post('buscar_privilegios','PrivilegioController@buscar_privilegios');
 
 Route::resource('departamentos', 'DepartamentoController');
 Route::get('lista_departamentos','DepartamentoController@lista_departamentos');
 Route::get('listaPrivilegios/{departamento_id}', 'DepartamentoController@listaPrivilegios');
+Route::post('buscar_departamentos','DepartamentoController@buscar_departamentos');
 
 Route::get('ver_archivo/{id}', 'TramiteController@ver_archivo');

@@ -27,7 +27,7 @@ import {UsuarioComponent} from './usuario/usuario.component';
 import {UsuarioIndexComponent} from './usuario/usuario-index/usuario-index.component';
 import {UsuarioCreateComponent} from './usuario/usuario-create/usuario-create.component';
 import {UsuarioEditComponent} from './usuario/usuario-edit/usuario-edit.component';
-import {AuthGuard} from "../shared/guard";
+import {AuthGuard} from '../shared/guard';
 
 const routes: Routes = [
     {

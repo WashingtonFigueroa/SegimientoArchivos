@@ -26,4 +26,7 @@ export class UsuarioService {
     destroy(id) {
         return this.http.delete(this.base + 'usuarios/' + id );
     }
+    buscar_usuarios(search) {
+        return this.http.post(`${environment.base}buscar_usuarios`, search);
+    }
 }
