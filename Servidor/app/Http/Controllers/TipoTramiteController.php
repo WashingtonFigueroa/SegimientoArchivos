@@ -43,14 +43,22 @@ class TipoTramiteController extends Controller
      * que los crea
      * */
     public function tipo_tramites_departamento($departamento_id) {
-        $tipo_tramites = TipoTramite::join('recorridos', 'recorridos.tipo_tramite_id', 'tipo_tramites.id')
+        $tipo_tramites = Departamento::find($departamento_id)->tipoTramites()
+                                        /*->with('recorridos')*/
+                                        ->join('recorridos', 'recorridos.tipo_tramite_id', 'tipo_tramites.id')
+                                        ->where('recorridos.posicion', 1)
+                                        ->where('recorridos.departamento_id', $departamento_id)
+                                        ->whereNull('recorridos.deleted_at')
+                                        ->select('tipo_tramites.*')
+                                        ->distinct('tipo_tramites.id')
+                                        ->get();
+ /*       $tipo_tramites = TipoTramite::with('recorridos')->join('recorridos', 'recorridos.tipo_tramite_id', 'tipo_tramites.id')
                                     ->where('tipo_tramites.departamento_id', $departamento_id)
                                     ->where('recorridos.posicion', 1)
                                     ->where('recorridos.departamento_id', $departamento_id)
-
                                     ->select('tipo_tramites.*')
                                     ->distinct('tipo_tramites.id')
-                                    ->get();
+                                    ->get();*/
         return response()->json($tipo_tramites, 200);
     }
 
@@ -72,6 +80,7 @@ class TipoTramiteController extends Controller
         $recorridos = Recorrido::join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
                                  ->where('recorridos.tipo_tramite_id', '=', $tipo_tramite_id)
                                  ->where('recorridos.departamento_id', '<>', $administrador_id)
+                                 ->whereNull('recorridos.deleted_at')
                                  ->select(
                                             'recorridos.tipo_tramite_id',
                                             'recorridos.posicion',
@@ -80,7 +89,7 @@ class TipoTramiteController extends Controller
                                             'recorridos.departamento_id',
                                             'departamentos.nombre'
                                      )
-                                 ->orderBy('recorridos.posicion')
+                                 ->orderBy('recorridos.posicion', 'asc')
                                  ->get();
         $departamentos_recorrido = Recorrido::join('departamentos', 'departamentos.id', 'recorridos.departamento_id')
             ->where('recorridos.tipo_tramite_id', '=', $tipo_tramite_id)

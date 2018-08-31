@@ -20,13 +20,14 @@ export class LoginComponent implements OnInit {
                 protected toastr: ToastrService,
                 protected loginService: LoginService,
                 protected fb: FormBuilder) {
-        if (this.loginService.estaAutenticado()) {
+        if (localStorage.getItem('fileTrackingToken')) {
             this.router.navigate(['/dashboard']);
         }
         this.createForm();
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+    }
 
     createForm() {
         this.loginGroup = this.fb.group({

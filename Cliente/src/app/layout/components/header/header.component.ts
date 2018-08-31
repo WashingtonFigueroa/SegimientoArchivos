@@ -16,10 +16,10 @@ export class HeaderComponent implements OnInit {
                 public router: Router,
                 protected loginService: LoginService) {
         this.departamento = this.loginService.getDepartamento();
-        this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de', 'zh-CHS']);
-        this.translate.setDefaultLang('en');
+        this.translate.addLangs(['es', 'en', 'fr', 'ur', 'it', 'fa', 'de', 'zh-CHS']);
+        this.translate.setDefaultLang('es');
         const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de|zh-CHS/) ? browserLang : 'en');
+        this.translate.use(browserLang.match(/es|en|fr|ur|it|fa|de|zh-CHS/) ? browserLang : 'es');
 
         this.router.events.subscribe(val => {
             if (

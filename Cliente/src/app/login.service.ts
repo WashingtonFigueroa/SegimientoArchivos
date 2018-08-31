@@ -20,13 +20,19 @@ export class LoginService {
       return JSON.parse(localStorage.getItem('fileTrackingUsuario'));
   }
   getDepartamento() {
-      return JSON.parse(localStorage.getItem('fileTrackingUsuario')).departamento;
+      if( localStorage.getItem('fileTrackingUsuario') ) {
+          return JSON.parse(localStorage.getItem('fileTrackingUsuario')).departamento;
+      }
+      return null;
   }
   estaAutenticado() {
+      let autenticado;
       if (localStorage.getItem('fileTrackingToken')) {
-          return true;
+          autenticado = true;
+      } else {
+          autenticado = false;
       }
-      return false;
+      return autenticado;
   }
   logout() {
       localStorage.removeItem('fileTrackingToken');

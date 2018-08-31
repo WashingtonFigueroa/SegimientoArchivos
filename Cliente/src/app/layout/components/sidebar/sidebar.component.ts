@@ -16,15 +16,17 @@ export class SidebarComponent {
     usuario = '';
 
     @Output() collapsedEvent = new EventEmitter<boolean>();
-    
+
     constructor(private translate: TranslateService,
                 protected loginService: LoginService,
                 public router: Router) {
-        this.usuario = this.loginService.getUsuario().cuenta;
-        this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
-        this.translate.setDefaultLang('en');
+        if ( this.loginService.getUsuario() ) {
+            this.usuario = this.loginService.getUsuario().cuenta;
+        }
+        this.translate.addLangs(['es', 'en', 'fr', 'ur', 'it', 'fa', 'de']);
+        this.translate.setDefaultLang('es');
         const browserLang = this.translate.getBrowserLang();
-        this.translate.use(browserLang.match(/en|fr|ur|es|it|fa|de/) ? browserLang : 'en');
+        this.translate.use(browserLang.match(/es|en|fr|ur|it|fa|de/) ? browserLang : 'es');
 
         this.router.events.subscribe(val => {
             if (
