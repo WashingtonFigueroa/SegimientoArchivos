@@ -3,11 +3,13 @@ import {environment} from '../../../../environments/environment.prod';
 import {Router} from '@angular/router';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PrivilegioService} from '../privilegio.service';
+import {routerTransition} from '../../../router.animations';
 
 @Component({
   selector: 'app-privilegio-index',
   templateUrl: './privilegio-index.component.html',
-  styleUrls: ['./privilegio-index.component.scss']
+  styleUrls: ['./privilegio-index.component.scss'],
+  animations: [routerTransition()]
 })
 export class PrivilegioIndexComponent implements OnInit {
     privilegios: any = [];

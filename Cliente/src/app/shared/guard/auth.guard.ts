@@ -10,9 +10,11 @@ export class AuthGuard implements CanActivate {
                 protected loginService: LoginService) {}
     canActivate(next: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-let privilegios = [];
-privilegios = JSON.parse( localStorage.getItem('fileTrackingPrivilegios'));
-        if (localStorage.getItem('token')) {
+        if (this.loginService.estaAutenticado()) {
+            let privilegios = [];
+            privilegios = JSON.parse(atob(localStorage.getItem('fileTrackingPrivilegios')));
+            console.log(privilegios);
+
             if (state.url === '/dashboard') {
                 return true;
             }

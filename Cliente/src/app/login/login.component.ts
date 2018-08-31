@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
                 protected toastr: ToastrService,
                 protected loginService: LoginService,
                 protected fb: FormBuilder) {
-        if (localStorage.getItem('fileTrackingToken')) {
+        if (this.loginService.estaAutenticado()) {
             this.router.navigate(['/dashboard']);
         }
         this.createForm();
@@ -41,8 +41,8 @@ export class LoginComponent implements OnInit {
             .subscribe((res: any) => {
                 this.toastr.success(res.mensaje, 'Ingresando al sistema');
                 localStorage.setItem('fileTrackingToken', res.token);
-                localStorage.setItem('fileTrackingUsuario', JSON.stringify(res.usuario) );
-                localStorage.setItem('fileTrackingPrivilegios', JSON.stringify(res.privilegios) );
+                localStorage.setItem('fileTrackingUsuario', btoa(JSON.stringify(res.usuario)) );
+                localStorage.setItem('fileTrackingPrivilegios', btoa(JSON.stringify(res.privilegios)) );
                 this.router.navigate(['/dashboard']);
             }, (error: any) => {
                 console.log('res');

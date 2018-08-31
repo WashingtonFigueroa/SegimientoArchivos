@@ -67,7 +67,8 @@ class DepartamentoController extends Controller
     public function buscar_departamentos() {
         $search = request()->input('search');
         $departamentos = Departamento::where('nombre', 'like', '%'. $search . '%')
-            ->paginate(10);
+                                    ->orWhere('descripcion', 'like', '%'. $search . '%')
+                                    ->paginate(10);
         return response()->json($departamentos, 200);
     }
 

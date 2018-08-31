@@ -19,16 +19,12 @@ export class DashboardComponent implements OnInit {
                 protected loginService: LoginService,
                 protected router: Router) {
         let departamento_id;
-        if ( localStorage.getItem('fileTrackingUsuario') ) {
-            departamento_id = this.loginService.getUsuario().departamento_id;
-            this.tramiteService.cantidad_estado_tramites(departamento_id)
-                .subscribe(res => {
-                    console.log(res);
-                    this.tramites = res;
-                });
-        } else {
-            this.router.navigate(['/login']);
-        }
+        departamento_id = this.loginService.getUsuario().departamento_id;
+        this.tramiteService.cantidad_estado_tramites(departamento_id)
+            .subscribe(res => {
+                console.log(res);
+                this.tramites = res;
+            });
         this.sliders.push(
             {
                 imagePath: 'assets/images/slider1.jpg'

@@ -15,9 +15,12 @@ class PrivilegioController extends Controller
     public function buscar_privilegios() {
         $search = request()->input('search');
         $privilegios = Privilegio::with('departamento')
-            ->where('departamento_id', '!=', 1)
-            ->where('nombre', 'like', '%'. $search . '%')
-            ->paginate(10);
+                                ->join('departamentos', 'departamentos.id', 'privilegios.departamento_id')
+                                ->whereNull('departamentos.deleted_at')
+                                ->where('privilegios.departamento_id', '!=', 1)
+                                ->where('privilegios.ruta', 'like', '%'. $search . '%')
+                                ->orWhere('departamentos.nombre', 'like', '%'. $search . '%')
+                                ->paginate(10);
         return response()->json($privilegios, 200);
     }
     public function store()

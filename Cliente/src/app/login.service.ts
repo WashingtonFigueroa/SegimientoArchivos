@@ -17,11 +17,11 @@ export class LoginService {
       });
   }
   getUsuario() {
-      return JSON.parse(localStorage.getItem('fileTrackingUsuario'));
+      return JSON.parse(atob(localStorage.getItem('fileTrackingUsuario')));
   }
   getDepartamento() {
-      if( localStorage.getItem('fileTrackingUsuario') ) {
-          return JSON.parse(localStorage.getItem('fileTrackingUsuario')).departamento;
+      if ( this.estaAutenticado() ) {
+          return JSON.parse(atob(localStorage.getItem('fileTrackingUsuario'))).departamento;
       }
       return null;
   }
