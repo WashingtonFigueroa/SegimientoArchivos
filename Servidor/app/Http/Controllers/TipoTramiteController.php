@@ -13,6 +13,13 @@ class TipoTramiteController extends Controller
         return response()->json(TipoTramite::with('departamento')
                         ->orderBy('nombre')->paginate(10), 200);
     }
+    public function buscar_tipotramites() {
+        $search = request()->input('search');
+        $tipotramites = TipoTramite::with('departamento')
+            ->where('nombre', 'like', '%'. $search . '%')
+            ->paginate(10);
+        return response()->json($tipotramites, 200);
+    }
     public function lista_tipo_tramites()
     {
         return response()->json(TipoTramite::orderBy('nombre')->get(), 200);

@@ -36,8 +36,8 @@ export class DepartamentoEditComponent implements OnInit {
 
     createForm(departamento) {
         this.departamentoGroup = this.fb.group({
-            'nombre' : new FormControl(departamento.nombre, [Validators.pattern(/^[a-zA-Z ]{3,}$/)]),
-            'descripcion' : new FormControl(departamento.descripcion, [Validators.pattern(/^[a-zA-Z ]{2,}$/)])
+            'nombre' : new FormControl(departamento.nombre,[Validators.required]),
+            'descripcion' : new FormControl(departamento.descripcion, [Validators.required])
         });
     }
 

@@ -16,6 +16,7 @@ export class DepartamentoIndexComponent implements OnInit {
     closeResult: string = null;
     departamento_id: number = null;
     departamentos: any = [];
+    search = '';
     pages: any = [];
     prev_page: any = null;
     next_page: any = null;
@@ -35,7 +36,17 @@ export class DepartamentoIndexComponent implements OnInit {
 
             });
     }
+    buscar(search) {
+        this.departamentoService.buscar_departamentos({search: search})
+            .subscribe((res: any) => {
+                this.departamentos = res.data;
+                this.getPages(res.last_page);
+                this.prev_page = res.prev_page_url;
+                this.next_page = res.next_page_url;
+            });
+    }
     getPages(last_page) {
+        this.pages = [];
         for (let i = 1; i <= last_page; i++ ) {
             this.pages.push(
                 {

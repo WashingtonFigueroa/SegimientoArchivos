@@ -26,4 +26,7 @@ export class PrivilegioService {
     destroy(id) {
         return this.http.delete(this.base + 'privilegios/' + id );
     }
+    buscar_privilegios(search) {
+        return this.http.post(`${environment.base}buscar_privilegios`, search);
+    }
 }

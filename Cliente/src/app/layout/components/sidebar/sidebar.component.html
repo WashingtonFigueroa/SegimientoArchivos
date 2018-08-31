@@ -1,7 +1,8 @@
 <nav class="sidebar" [ngClass]="{sidebarPushRight: isActive, collapsed: collapsed}">
     <hr>
     <div class="list-group">
-        <a class="list-group-item">{{ usuario }}</a>
+        <a class="list-group-item" style="color: #1b1e21; background: #f7f7f7">{{ usuario }}</a>
+        <br>
         <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-home"></i>&nbsp;
             <span>{{ 'Dashboard' | translate }}</span>

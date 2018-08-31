@@ -29,6 +29,8 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         $usuario->departamento_id = request()->input('departamento_id');
         $usuario->nombres = request()->input('nombres');
+        $usuario->cuenta = request()->input('cuenta');
+        $usuario->password = Hash::make(request()->input('password'));
         $usuario->save();
         return response()->json($usuario, 200);
     }
@@ -37,4 +39,13 @@ class UsuarioController extends Controller
         $usuario->delete();
         return response()->json(['exito' => 'El usuario ' . $usuario->nombres . ' fue eliminado exitosamente'], 200);
     }
+    public function buscar_usuarios() {
+        $search = request()->input('search');
+        $usuarios = Usuario::with('departamento')
+            ->where('departamento_id', '!=', 1)
+            ->where('nombres', 'like', '%'. $search . '%')
+            ->paginate(10);
+        return response()->json($usuarios, 200);
+    }
+
 }

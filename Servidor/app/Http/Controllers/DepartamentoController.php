@@ -58,11 +58,17 @@ class DepartamentoController extends Controller
         $departamento->update(request()->all());
         return response()->json($departamento, 200);
     }
-
     public function destroy($id)
     {
         $departamento = Departamento::find($id);
         $departamento->delete();
         return response()->json(['exito' => 'Departamento ' . $departamento->nombre . ' eliminado exitosamente'], 200);
     }
+    public function buscar_departamentos() {
+        $search = request()->input('search');
+        $departamentos = Departamento::where('nombre', 'like', '%'. $search . '%')
+            ->paginate(10);
+        return response()->json($departamentos, 200);
+    }
+
 }

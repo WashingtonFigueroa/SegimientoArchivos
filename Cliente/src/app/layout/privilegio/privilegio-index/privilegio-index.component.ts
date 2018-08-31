@@ -37,12 +37,17 @@ export class PrivilegioIndexComponent implements OnInit {
     }
 
     buscar(search) {
-        this.privilegios = this.privilegiosBK.filter((privilegio: any) => {
-            return privilegio.departamento.nombre.toLowerCase().indexOf(search) > -1;
-        });
+        this.privilegioService.buscar_privilegios({search: search})
+            .subscribe((res: any) => {
+                this.privilegios = res.data;
+                this.getPages(res.last_page);
+                this.prev_page = res.prev_page_url;
+                this.next_page = res.next_page_url;
+            });
     }
 
     getPages(last_page) {
+        this.pages = [];
         for (let i = 1; i <= last_page; i++ ) {
             this.pages.push(
                 {

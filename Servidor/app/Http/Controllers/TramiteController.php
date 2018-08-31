@@ -19,6 +19,8 @@ class TramiteController extends Controller
                ->paginate(10);
         return response()->json($tramites, 200);
     }
+
+
     public function store()
     {
         $recorrido_id = TipoTramite::find(request()->input('tipo_tramite_id'))
