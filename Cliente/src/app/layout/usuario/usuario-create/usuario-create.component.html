@@ -1,27 +1,26 @@
 <div class="container-fluid" [@routerTransition]>
     <br>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/dashboard">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="fa fa-user"></i> &nbsp;
+                <a routerLink="/usuario" >Lista Usuarios</a>
+            </li>
+            <li class="breadcrumb-item active">
+                Añadir Usuario
+            </li>
+        </ol>
+    </nav>
     <div class="row">
         <div class="col-md-12">
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a routerLink="/dashboard">Inicio</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <i class="fa fa-user"></i> &nbsp;
-                        <a routerLink="/usuario" >Lista Usuarios</a>
-                    </li>
-                    <li class="breadcrumb-item active">
-                        Añadir Usuario
-                    </li>
-                </ol>
-            </nav>
-            <br>
             <div class="row">
                 <div class="col-md-8">
                     <form role="form" (submit)="store()" [formGroup]="usuarioGroup">
                         <div class="card">
-                            <h5 class="card-header">
+                            <h5 class="card-header" style="color: #f7f7f7; background: #2e6da4">
                                 Ingrese Usuario
                             </h5>
                             <div class="card-body">

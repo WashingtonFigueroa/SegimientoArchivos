@@ -16,13 +16,12 @@
                 </li>
             </ol>
         </nav>
-        <br>
         <div class="row">
         <div class="col-md-8">
             <form (submit)="store()" role="form" *ngIf="departamentos !== null" [formGroup]="tipotramiteGroup">
                 <div class="card">
-                    <h5 class="card-header">
-                        Ingrese Tipo de Tramite :
+                    <h5 class="card-header" style="color: #f7f7f7; background: #2e6da4">
+                        Ingrese Tipo de Tramite
                     </h5>
                     <div class="card-body">
                         <div class="form-group">
@@ -66,8 +65,8 @@
             </form>
         </div>
         <div class="col-md-4" align="center">
-            <br>
-            <img src="https://transparencia.aragon.es/sites/default/files/images/icon_documents.png" alt="" width="200">
+            <hr>
+            <img src="assets/images/tipotramite.jpg" alt="" width="200">
         </div>
         </div>
     </div>

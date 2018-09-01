@@ -1,12 +1,21 @@
 <div class="container-fluid">
     <br>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/dashboard">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="fa fa-file"></i> &nbsp; &nbsp;
+                <a routerLink="/tramite" >Lista Tramites</a>
+            </li>
+            <li class="breadcrumb-item active">
+                Editar tramite
+            </li>
+        </ol>
+    </nav>
     <div class="row">
         <div class="col-md-12">
-            <div class="card-header">
-                <i class="fa fa-file"></i> &nbsp;
-                Editar tramite
-            </div>
-            <hr>
             <div class="row">
                 <div class="col-md-8" *ngIf="tramite !== null">
                     <div class="form-group input-group">
@@ -21,60 +30,65 @@
                         </div>
                         <input type="text" class="form-control" disabled="true" [value]="tramite.cliente.identificacion">
                     </div>
-
                     <form (submit)="update()" role="form" [formGroup]="tramiteGroup">
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="recorrido_label">Recorrido:</span>
+                        <div class="card">
+                            <h5 class="card-header" style="color: #f7f7f7; background: #2e6da4">
+                                Información tramite :
+                            </h5>
+                            <div class="card-body">
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="recorrido_label">Recorrido:</span>
+                                    </div>
+                                    <select class="form-control" formControlName="recorrido_id">
+                                        <option [value]="recorrido.id"
+                                                [selected]="recorrido.id === tramite.recorrido_id"
+                                                *ngFor="let recorrido of recorridos">
+                                            {{ recorrido.tipo_tramite }} | Paso {{ recorrido.posicion }} | Dep. {{ recorrido.departamento }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="observacion_label">Observacion:</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                           id="observacion"
+                                           formControlName="observacion"
+                                           name="observacion"/>
+                                </div>
+                                <div class="form-group input-group">
+                                    <span class="input-group-text" id="estado_label">Estado de Tramite:</span>
+                                    <ul class="list-group-item">
+                                        <li>
+                                            <span class="radio-content">Pendiente </span><input type="radio" class="radio" formControlName="estado" value="pendiente">
+                                        </li>
+                                        <li>
+                                            <span class="radio-content">En Proceso </span><input type="radio" class="radio" formControlName="estado" value="proceso">
+                                        </li>
+                                        <li>
+                                            <span class="radio-content">Finalizado </span><input type="radio" class="radio" formControlName="estado" value="finalizado">
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="permiso_label">Permiso público:</span>
+                                    </div>
+                                    <input type="checkbox" class="permiso" formControlName="permiso">
+                                </div>
                             </div>
-                            <select class="form-control" formControlName="recorrido_id">
-                                <option [value]="recorrido.id"
-                                        [selected]="recorrido.id === tramite.recorrido_id"
-                                        *ngFor="let recorrido of recorridos">
-                                    {{ recorrido.tipo_tramite }} | Paso {{ recorrido.posicion }} | Dep. {{ recorrido.departamento }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="observacion_label">Observacion:</span>
+                            <div class="card-footer">
+                                <button [disabled]="tramiteGroup.status === 'INVALID'" type="submit" class="btn btn-success">
+                                    Actualizar
+                                </button>
                             </div>
-                            <input type="text" class="form-control"
-                                   id="observacion"
-                                   formControlName="observacion"
-                                   name="observacion"/>
                         </div>
-                        <div class="form-group input-group">
-                            <span class="input-group-text" id="estado_label">Estado de Tramite:</span>
-                            <ul class="list-group-item">
-                                <li>
-                                    <span class="radio-content">Pendiente </span><input type="radio" class="radio" formControlName="estado" value="pendiente">
-                                </li>
-                                <li>
-                                    <span class="radio-content">En Proceso </span><input type="radio" class="radio" formControlName="estado" value="proceso">
-                                </li>
-                                <li>
-                                    <span class="radio-content">Finalizado </span><input type="radio" class="radio" formControlName="estado" value="finalizado">
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="permiso_label">Permiso público:</span>
-                            </div>
-                            <input type="checkbox" class="permiso" formControlName="permiso">
-                        </div>
-                        <hr>
-                        <button [disabled]="tramiteGroup.status === 'INVALID'" type="submit" class="btn btn-success">
-                            Actualizar
-                        </button>
                     </form>
                 </div>
                 <div class="col-md-4" align="center">
-                    <br>
-                    <h3>Tramite</h3>
                     <hr>
-                    <img src="http://www.funcionpublica.gov.co/eva/admon/files/empresas/ZW1wcmVzYV83Ng==/imagenes/1485389466_d4282d7e456ce04dbb5431b38657816c.png" alt="" width="200">
+                    <img src="assets/images/procedure.jpg" alt="" width="200">
                 </div>
             </div>
         </div>

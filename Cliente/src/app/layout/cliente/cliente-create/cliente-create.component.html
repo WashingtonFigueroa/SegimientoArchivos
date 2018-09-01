@@ -1,28 +1,27 @@
 <div class="container-fluid">
+  <br>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard">Inicio</a>
+      </li>
+      <li class="breadcrumb-item">
+        <i class="fa fa-users"></i> &nbsp;&nbsp;
+        <a routerLink="/cliente" >Lista Clientes</a>
+      </li>
+      <li class="breadcrumb-item active">
+        Añadir Cliente
+      </li>
+    </ol>
+  </nav>
   <div class="row">
     <div class="col-md-12">
-      <br>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a routerLink="/dashboard">Inicio</a>
-          </li>
-          <li class="breadcrumb-item">
-            <i class="fa fa-users"></i> &nbsp;&nbsp;
-            <a routerLink="/cliente" >Lista Clientes</a>
-          </li>
-          <li class="breadcrumb-item active">
-            Añadir Cliente
-          </li>
-        </ol>
-      </nav>
-      <br>
       <div class="row">
         <div class="col-md-8">
           <form role="form" [formGroup]="clienteGroup">
             <div class="card">
-              <h5 class="card-header">
-                Ingrese Cliente :
+              <h5 class="card-header" style="color: #f7f7f7; background: #2e6da4">
+                Ingrese Cliente
               </h5>
               <div class="card-body">
                 <div class="form-group input-group">
@@ -39,7 +38,7 @@
                     <span class="input-group-text" id="iden">Identificación:</span>
                   </div>
                   <input type="text" class="form-control"
-                         mask="000000000-0"
+                         mask="000000000-0-001"
                          id="identificacion" name="identificacion" formControlName="identificacion" placeholder="000000000-0" autofocus/>
                   &nbsp;&nbsp;&nbsp;
                   <button (click)="consultacliente()" class="btn btn-success">
@@ -107,7 +106,7 @@
           </form>
         </div>
         <div class="col-md-4" align="center">
-          <br>
+          <hr>
           <img src="assets/images/clientes.jpg" alt="" width="200">
         </div>
       </div>

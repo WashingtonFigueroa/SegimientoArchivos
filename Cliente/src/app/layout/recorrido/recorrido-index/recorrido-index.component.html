@@ -1,5 +1,24 @@
 <div class="container-fluid" [@routerTransition]>
-    <h4>Recorridos</h4>
+    <br>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/dashboard">Inicio</a>
+            </li>
+            <li class="breadcrumb-item">
+                <i class="fa fa-file-archive-o"></i> &nbsp;
+                <a routerLink="/tramite" >Lista Tramites</a>
+            </li>
+            <li class="breadcrumb-item active">
+                Añadir Recorrido
+            </li>
+        </ol>
+    </nav>
+    <div class="card">
+        <h5 class="card-header" style="color: #f7f7f7; background: #2e6da4">
+            Información Recorrido
+        </h5>
+    </div>
     <div class="row">
         <div class="dndPlaceholder col-md-12" #placeholder></div>
         <div class="col-md-6 form-group input-group">
@@ -15,7 +34,9 @@
         <div class="col-md-4"
              [dndList]
              [dndPlaceholder]="placeholder"
-             [dndModel]="recorridos[0]">
+             [dndModel]="recorridos[0]" >
+            <div class="divScroll">
+
                 <a href="#" class="list-group-item list-group-item-action active justify-content-between">
                     <strong>{{ recorridos[0].length }} </strong> Departamentos
                 </a>
@@ -24,9 +45,10 @@
                      [dndType]="'item'"
                      (dndMoved)="removeItem(item, recorridos[0])"
                      [dndDraggable]
-                     [dndObject]="item">
+                     [dndObject]="item" >
                     <span class="badge badge-secondary badge-pill">{{ i + 1 }}</span> {{item.nombre}}
                 </div>
+            </div>
         </div>
         <div class="col-md-8"
              [dndList]
