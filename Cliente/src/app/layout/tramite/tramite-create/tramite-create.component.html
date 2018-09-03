@@ -1,28 +1,27 @@
 <div class="container-fluid">
   <br>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a routerLink="/dashboard">Inicio</a>
+      </li>
+      <li class="breadcrumb-item">
+        <i class="fa fa-file-archive-o"></i> &nbsp;&nbsp;
+        <a routerLink="/tramite" >Lista de Tramites</a>
+      </li>
+      <li class="breadcrumb-item active">
+        Añadir Tramite
+      </li>
+    </ol>
+  </nav>
   <div class="row">
     <div class="col-md-12">
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a routerLink="/dashboard">Inicio</a>
-          </li>
-          <li class="breadcrumb-item">
-            <i class="fa fa-file-archive-o"></i> &nbsp;&nbsp;
-            <a routerLink="/tramite" >Lista de Tramites</a>
-          </li>
-          <li class="breadcrumb-item active">
-            Añadir Tramite
-          </li>
-        </ol>
-      </nav>
-      <br>
       <div class="row">
         <div class="col-md-8">
           <form (submit)="store()" role="form" [formGroup]="tramiteGroup">
             <div class="card">
-              <h5 class="card-header">
-                Ingrese Tramite :
+              <h5 class="card-header" style="color: #f7f7f7; background: #2e6da4">
+                Ingrese Tramite
               </h5>
               <div class="card-body">
                 <div class="row">
@@ -108,8 +107,8 @@
           </form>
         </div>
         <div class="col-md-4" align="center">
-          <br>
-          <img src="https://www.microdata.es/wp-content/uploads/G_investigacion-expediente.jpg" alt="" width="200">
+          <hr>
+          <img src="assets/images/procedure.jpg" alt="" width="200">
         </div>
       </div>
     </div>
