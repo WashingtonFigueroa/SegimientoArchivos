@@ -41,4 +41,8 @@ export class TramiteService {
     cantidad_estado_tramites(departamento_id) {
         return this.http.get(this.base + 'cantidad_estado_tramites/' + departamento_id);
     }
+    actualizar_archivo_tramite(request, id) {
+        return this.http.post(this.base + 'actualizar_archivo_tramite/' + id, request);
+    }
+
 }

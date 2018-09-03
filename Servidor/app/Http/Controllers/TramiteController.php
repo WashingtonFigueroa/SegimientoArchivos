@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Departamento;
+use App\Respaldo;
 use App\TipoTramite;
 use App\Tramite;
 use http\Env\Response;
@@ -49,11 +50,9 @@ class TramiteController extends Controller
     public function update($id)
     {
         $tramite = Tramite::find($id);
-        $tramite->fill(request()->all());
-        $tramite->save();
+        $tramite->update(request()->all());
         return response()->json($tramite, 200);
     }
-
     public function destroy($id)
     {
         $tramite = Tramite::find($id);
@@ -129,5 +128,26 @@ class TramiteController extends Controller
             'proceso' => $tramites_proceso,
             'finalizados' => $tramites_finalizados,
         ]);
+    }
+    public function actualizar_archivo_tramite($id) {
+        $tramite = Tramite::find($id);
+        $tramite->cliente_id = request()->input('cliente_id');
+        $tramite->tipo_tramite_id = (int)request()->input('tipo_tramite_id');
+        $tramite->estado = request()->input('estado');
+        $tramite->fecha_inicio = request()->input('fecha_inicio');
+        $tramite->recorrido_id = request()->input('recorrido_id');
+        $tramite->observacion = request()->input('observacion');
+        $tramite->permiso = request()->input('permiso');
+
+        if (request()->hasFile('nuevo_archivo')) {
+            $path_nuevo_archivo = request()->file('nuevo_archivo')->store('archivos');
+            Respaldo::create([
+                'tramite_id' => (int)$tramite->id,
+                'archivo' => $tramite->archivo
+            ]);
+            $tramite->archivo = $path_nuevo_archivo;
+        }
+        $tramite->save();
+        return response()->json($tramite, 200);
     }
 }

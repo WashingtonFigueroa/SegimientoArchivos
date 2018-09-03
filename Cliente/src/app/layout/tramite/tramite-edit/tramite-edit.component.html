@@ -58,11 +58,29 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="form-group input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="permiso_label">Permiso público:</span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="permiso_label">Permiso público:</span>
+                                    </div>
+                                    <input type="checkbox" class="permiso" formControlName="permiso">
+                                </div>
                             </div>
-                            <input type="checkbox" class="permiso" formControlName="permiso">
+                            <div class="col-md-6">
+                                <div class="form-group input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="con_archivo_label">Actualizar archivo:</span>
+                                    </div>
+                                    <input type="checkbox" class="permiso" formControlName="con_archivo">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group input-group" [class.ocultar]="tramiteGroup.value.con_archivo === false">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="nuevo_archivo_label">Subir actualización de archivo:</span>
+                            </div>
+                            <input type="file" #nuevo_archivo class="form-control">
                         </div>
                         <hr>
                         <button [disabled]="tramiteGroup.status === 'INVALID'" type="submit" class="btn btn-success">
